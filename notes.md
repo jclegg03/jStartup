@@ -3,7 +3,7 @@
 [My startup](https://simon.cs260.click)
 
 ## Useful Commands
- - `mkdir` **m**a**k**es a new **dir**ectory
+ - `mkdir` ***m***a***k***es a new ***dir***ectory
 
 
 ## Helpful links
