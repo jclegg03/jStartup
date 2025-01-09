@@ -4,6 +4,11 @@
 
 ## Useful Commands
  - `mkdir` ***m***a***k***es a new ***dir***ectory
+ - `git pull` ***pull***s the repository down to the local device
+ - `git commit -am [commit message]` ***commit***s the changes on the local device to the local git
+ - `git push` ***push***es the local committed changes to the online repository
+ - `git fetch` pulls the online version without changing your code
+ - `git status` will tell you how your current local repository compares to the fetched repository
 
 
 ## Helpful links
