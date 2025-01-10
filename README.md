@@ -26,6 +26,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
+Remember that time you actually accomplished all of your goals? Yeah, me neither. Well, being accountable will help you accomplish more of them. This app intends to assist you in realizing additional goals by aiding you track progress and find friends to cheer you on. Earn accolades by being consistent with your goals and by helping other users stay motivated. See other people's achievements as they do the same. Now you have a community to help you carry out your aspirations.
 
 
 ### Design
