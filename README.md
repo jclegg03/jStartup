@@ -31,7 +31,7 @@ Remember that time you actually accomplished all of your goals? Yeah, me neither
 
 ### Design
 
-![Design image]("CS260 Design.jpg")
+![Design image](CS260 Design.jpg)
 
 
 
