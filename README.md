@@ -44,20 +44,22 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- A place to track your goals
+- Add friends and see their goals
+- See achievements you can earn
+- Login using HTTPS
+- See other's achievements in real time
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - 4 pages in HTML.
+- **CSS** - Style that will fit the user's screen.
+- **React** - Login, see friend's progress, add new goals.
+- **Service** - Chat service to encourage your friends!
+- **DB/Login** - Store users and their goals, save their friends.
+- **WebSocket** - See other's achievements in real time.
 
 ## 🚀 AWS deliverable
 
