@@ -1,8 +1,8 @@
-# Your startup name here
+# Accomplish Your Goals
 
 [My Notes](notes.md)
 
-A brief description of the application here.
+This app is here to help you and your friends track your goals. You can see how they are doing with their goals and support them on their journey. They will be able to do the same for you. You can earn achievements as you accomplish your goals and help your friends.
 
 
 > [!NOTE]
