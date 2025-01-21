@@ -19,9 +19,8 @@
 - [Markup Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
 ## AWS Notes
-
-- Route 53 is used to rent the domain from the DNS
 [!IMPORTANT] Respond to the email within 15 days
+- Route 53 is used to rent the domain from the DNS
 - EC2 is used to get the IP address
 
 ## HTML Notes
