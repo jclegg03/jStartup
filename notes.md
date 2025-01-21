@@ -23,6 +23,7 @@
 > [!IMPORTANT]
 > Respond to the email within 15 days
 - EC2 is used to get the IP address
+- This [link](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md) explains how to set up HTTPS protocol because your browser will scream at you for using HTTP
 
 
 ## HTML Notes
