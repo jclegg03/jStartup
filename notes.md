@@ -1,6 +1,6 @@
 # CS 260 Notes
 
-[My startup](https://simon.cs260.click)
+[My startup](https://goalz.click)
 
 ## Useful Commands
  - `mkdir` ***m***a***k***es a new ***dir***ectory
