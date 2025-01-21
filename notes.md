@@ -21,7 +21,8 @@
 ## AWS Notes
 
 - Route 53 is used to rent the domain from the DNS
-- [!IMPORTANT] Respond to the email within 15 days
+  [!IMPORTANT] Respond to the email within 15 days
+- EC2 is used to get the IP address
 
 ## HTML Notes
 
