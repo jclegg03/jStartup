@@ -34,9 +34,11 @@
 - Select an element to modify in general by using the tag
 `<p style="color: blue;">some text here</p>`
 - Inside the block set attributes for all those elements
-`<style>
+```
+<style>
   p {
    color: red;
   }
-</style>`
+</style>
+```
 - You can also modify an individual element in that line of HTML which overrides the general rule
