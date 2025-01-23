@@ -49,4 +49,12 @@
   }
 </style>
 ```
+- Or class using .class
+```
+<style>
+  .CLASS {
+   color: red;
+  }
+</style>
+```
 - You can also modify an individual element in that line of HTML which overrides the general rule
