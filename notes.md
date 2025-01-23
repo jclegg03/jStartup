@@ -32,7 +32,7 @@
 
 ## CSS Notes
 - Select an element to modify in general by using the tag
-`<p style="color: blue;">some text here</p>`
+```<p style="color: blue;">some text here</p>```
 - Inside the block set attributes for all those elements
 ```
 <style>
