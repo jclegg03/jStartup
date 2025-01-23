@@ -41,4 +41,12 @@
   }
 </style>
 ```
+- You could also use id as the selector by putting a # in front
+```
+<style>
+  #ID {
+   color: red;
+  }
+</style>
+```
 - You can also modify an individual element in that line of HTML which overrides the general rule
