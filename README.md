@@ -24,7 +24,7 @@ Remember that time you actually accomplished all of your goals? Yeah, me neither
 
 ### Design
 
-![Design image](CS260Design.jpg)
+![Design image](images/CS260Design.jpg)
 
 
 
