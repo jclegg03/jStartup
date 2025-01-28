@@ -59,11 +59,11 @@ For this deliverable I did the following:
 
 ## 🚀 HTML deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I did the following:
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
+- [x] **HTML pages** - I have 4 complete pages for my webpage to login, track goals, add friends, and see achievements.
+- [x] **Proper HTML element usage** - I used various HTML elements to represent what I was trying to display on the page. This includes text, images, links, headers, and footers.
+- [x] **Links** - I have links to each of my pages in the header of each page. I also have a link to my github in the footer of each page.
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
 - [ ] **Images** - I did not complete this part of the deliverable.
