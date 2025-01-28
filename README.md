@@ -6,10 +6,7 @@ This app is here to help you and your friends track your goals. You can see how 
 
 ## 🚀 Specification Deliverable
 
-> [!NOTE]
->  Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I did the following:
 
 - [x] Proper use of Markdown
 - [x] A concise and compelling elevator pitch
