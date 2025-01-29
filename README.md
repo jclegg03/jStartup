@@ -64,12 +64,12 @@ For this deliverable I did the following:
 - [x] **HTML pages** - I have 4 complete pages for my webpage to login, track goals, add friends, and see achievements.
 - [x] **Proper HTML element usage** - I used various HTML elements to represent what I was trying to display on the page. This includes text, images, links, headers, and footers.
 - [x] **Links** - I have links to each of my pages in the header of each page. I also have a link to my github in the footer of each page.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] **Text** - Text is used as a placeholder for many future features of my page.
+- [x] **3rd party API placeholder** - The button to encourage a friend will eventually have a 3rd party API that sends an email to that friend.
+- [x] **Images** - I have images for the achievements
+- [x] **Login placeholder** - My home page is a login screen that does nothing yet.
+- [x] **DB data placeholder** - The login screen will store information. Each user will have data stored about them like their goals, friends, and achievements.
+- [x] **WebSocket placeholder** - I will have a websocket that tells people when their friends have gotten a new achievement or started a new goal in real time.
 
 ## 🚀 CSS deliverable
 
