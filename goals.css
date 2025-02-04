@@ -29,8 +29,14 @@ main {
 
 #achievement-image {
     float: left;
-    height: 75px;
-    width: 75px;
+    height: calc(75px + 2em);
+    width: calc(75px + 2em);
+    padding: 1em;
+}
+
+#x-button {
+    float: right;
+    margin: 1em;
 }
 
 
