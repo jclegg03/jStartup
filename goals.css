@@ -2,6 +2,15 @@ main p button {
     float: right;
 }
 
+.goal {
+    float: left;
+}
+
 #add-goal {
     flex: 1;
+}
+
+main {
+   padding-left: 20vw !important;
+   padding-right: 20vw !important;
 }
