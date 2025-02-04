@@ -1,3 +1,7 @@
 main p button {
     float: right;
 }
+
+#add-goal {
+    flex: 1;
+}
