@@ -13,6 +13,8 @@ main {
 
 footer {
     flex: 0 5vh;
+    display: flex;
+    flex-direction: row;
 }
 
 menu {
