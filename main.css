@@ -13,6 +13,8 @@ main {
 
 footer {
     flex: 0 5vh;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 footer a {
