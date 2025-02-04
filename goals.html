@@ -31,17 +31,17 @@
             <h1 id="name">[Name]'s goals</h1>
             <p>
                 <span class="goal">Read the BOM daily</span>
-                <span>(2 day streak!)</span>
-                <button>1 hour remaining</button>
+                <span class="streak">(2 day streak!)</span>
+                <button class="btn btn-primary">1 hour remaining</button>
             </p>
             <p>
                 <span class="goal">Go on a date weekly</span>
-                <span>(7 week streak!)</span>
-                <button disabled>1 day 7 hours until reset</button>
+                <span class="streak">(7 week streak!)</span>
+                <button class="btn btn-primary" disabled>1 day 7 hours until reset</button>
             </p>
             <form id="add-goal" action="goals.html">
                 <div>
-                    <button type="submit">➕</button>
+                    <button class="btn btn-primary" type="submit">➕</button>
                     <input type="text" placeholder="New Goal">
                     <select>
                         <option>Daily</option>
@@ -52,9 +52,9 @@
             <div id="achievement">
                 <h4>New Achievement</h4>
                 <div>
-                    <img src="images/Handshake.jpg" height="50" width="50">
+                    <img id="achievement-image" src="images/Handshake.jpg" height="50" width="50">
                     Friendly
-                    <button>❌</button>
+                    <button class="btn btn-primary">❌</button>
                 </div>
                 <p>Add a friend</p>
             </div>

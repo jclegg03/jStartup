@@ -2,6 +2,12 @@ main p button {
     float: right;
 }
 
+
+.streak {
+    float: left;
+    padding-left: 1em;
+}
+
 .goal {
     float: left;
 }
@@ -14,6 +20,13 @@ main {
    padding-left: 20vw !important;
    padding-right: 20vw !important;
 }
+
+#achievement {
+    border-style: solid;
+    border-color: darkgrey;
+    border-width: 3px;
+}
+
 
 @media (max-width: 800px) {
     main {
