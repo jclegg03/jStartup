@@ -9,6 +9,10 @@ header {
 
 main {
     flex: 1 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 footer {
