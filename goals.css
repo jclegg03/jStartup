@@ -14,3 +14,9 @@ main {
    padding-left: 20vw !important;
    padding-right: 20vw !important;
 }
+
+@media (max-width: 800px) {
+    main {
+        padding: 0px !important;
+    }
+}
