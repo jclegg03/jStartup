@@ -5,3 +5,8 @@
 #create {
     float: right;
 }
+
+main {
+    align-items: center;
+    justify-content: space-around;
+}
