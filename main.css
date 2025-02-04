@@ -3,3 +3,36 @@ body {
     flex-direction: column;
 }
 
+header {
+    flex: 0 10vh;
+}
+
+main {
+    flex: 1 85vh;
+}
+
+footer {
+    flex: 0 5vh;
+}
+
+menu {
+    display: flex;
+    flex-direction: row !important;
+    margin: 0;
+}
+
+.nav-item {
+    padding: 5px;
+}
+
+@media (max-height: 600px) {
+    header {
+      display: none;
+    }
+    footer {
+      display: none;
+    }
+    main {
+      flex: 1 100vh;
+    }
+  }
