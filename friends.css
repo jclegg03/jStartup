@@ -1,0 +1,15 @@
+main {
+    padding-left: 20vw !important;
+    padding-right: 20vw !important;
+ }
+
+ .friend {
+    border-style: solid;
+    border-color: darkgrey;
+    border-width: 1px;
+ }
+
+ .encourage {
+    float: right;
+    padding-right: 1em;
+ }
