@@ -10,6 +10,31 @@ main {
  }
 
  .encourage {
-    float: right;
+    flex: 1;
     padding-right: 1em;
+ }
+
+ .goal {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0.5em;
+ }
+
+ .streak {
+    padding-left: 0.5em;
+ }
+
+ #add {
+    display: flex;
+    flex-direction: row;
+ }
+
+ #add button {
+    margin-right: 1em;
+ }
+
+ #notification {
+    border-style: solid;
+    border-width: 1px;
+    border-color: darkgrey;
  }

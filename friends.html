@@ -34,18 +34,18 @@
                     <span>Sally</span>
                     <span>3 goals</span>
                     <span>(going strong!)</span>
-                    <span><button>▼</button></span>
-                    <p>
+                    <span><button class="btn btn-primary">▼</button></span>
+                    <p class="goal">
                         <span>Run daily</span>
-                        <span>(2 day streak!)</span>
+                        <span class="streak">(2 day streak!)</span>
                     </p>
-                    <p>
+                    <p class="goal">
                         <span>Bike weekly</span>
-                        <span>(1 week streak!)</span>
+                        <span class="streak">(1 week streak!)</span>
                     </p>
-                    <p>
+                    <p class="goal">
                         <span>Consume no added sugars</span>
-                        <span>(1 day streak!)</span>
+                        <span class="streak">(1 day streak!)</span>
                     </p>
                 </div>
                 <div class="friend">
@@ -53,33 +53,35 @@
                         <span>Bob</span>
                         <span>2 goals</span>
                         <span>(needs encouragement)</span>
-                        <span><button>▼</button></span>
+                        <span><button class="btn btn-primary">▼</button></span>
                     </p>
                     <p class="goal">
                         <span>Meet someone new daily</span>
-                        <span>(732 day streak!)</span>
+                        <span class="streak">(732 day streak!)</span>
                     </p>
                     <p class="goal">
                         <span>Make home cooked meal daily</span>
-                        <span>(3 hours remaining)</span>
-                        <span class="encourage"><button>Encourage</button></span>
+                        <span class="streak">(3 hours remaining)</span>
+                        <span class="encourage"><button class="btn btn-primary">Encourage</button></span>
                     </p>
                 </div>   
             </div>
             <div>
                 <h2>Add friends</h2>
                 <form action="friends.html">
-                    <button type="submit">➕</button>
-                    <input type="text" placeholder="Enter Friend's username">
+                    <div id="add">
+                        <button class="btn btn-primary" type="submit">➕</button>
+                        <input class="form-control" type="text" placeholder="Enter Friend's username">
+                    </div>
                 </form>
                 <h3>Friend Requests</h3>
                 <p>
                     Jeff
-                    <button>✅</button>
-                    <button>❌</button>
+                    <button class="btn btn-primary">✅</button>
+                    <button class="btn btn-primary">❌</button>
                 </p>
             </div>
-            <div>
+            <div id="notification">
                 <p>
                     Sally earned the 7 days strong achievement
                     <span>4h ago</span>
