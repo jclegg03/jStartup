@@ -10,8 +10,7 @@ main {
  }
 
  .encourage {
-    flex: 1;
-    padding-right: 1em;
+    margin-right: 3em;
  }
 
  .goal {
@@ -33,10 +32,14 @@ main {
     margin-right: 1em;
  }
 
- #notification {
+ #notifications {
     border-style: solid;
     border-width: 1px;
     border-color: darkgrey;
+ }
+ 
+ .notification {
+    padding-bottom: 2em;
  }
 
  .message {
