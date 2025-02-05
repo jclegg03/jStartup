@@ -73,14 +73,14 @@ For this deliverable I did the following:
 
 ## 🚀 CSS deliverable
 
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+For this deliverable I did the following:
 
-- [ ] **Header, footer, and main content body** - I did not complete this part of the deliverable.
-- [ ] **Navigation elements** - I did not complete this part of the deliverable.
-- [ ] **Responsive to window resizing** - I did not complete this part of the deliverable.
-- [ ] **Application elements** - I did not complete this part of the deliverable.
-- [ ] **Application text content** - I did not complete this part of the deliverable.
-- [ ] **Application images** - I did not complete this part of the deliverable.
+- [x] **Header, footer, and main content body** - Navigation and flex displays.
+- [x] **Navigation elements** - These are displayed at the top of the page.
+- [x] **Responsive to window resizing** - I remove the navigation and footer when the screen height is too small. I also remove some side padding when there isn't enough width.
+- [x] **Application elements** - I styled each of my elements and used bootstrap for buttons and text boxes.
+- [x] **Application text content** - I aligned my text using CSS
+- [x] **Application images** - I used CSS to set my image's size.
 
 ## 🚀 React part 1: Routing deliverable
 
