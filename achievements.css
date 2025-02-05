@@ -9,6 +9,17 @@ main {
     padding-left: 30vw !important;
 }
 
+img {
+    float: left;
+    height: calc(75px + 2em);
+    width: calc(75px + 2em);
+    padding: 1em;
+}
+
+.data {
+    float: left;
+}
+
 @media (max-width: 600px) {
     main {
         padding-right: 0px !important;
