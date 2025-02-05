@@ -1,0 +1,17 @@
+.achievement {
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkgray;
+}
+
+main {
+    padding-right: 30vw !important;
+    padding-left: 30vw !important;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+}
