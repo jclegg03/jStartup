@@ -38,3 +38,24 @@ main {
     border-width: 1px;
     border-color: darkgrey;
  }
+
+ .message {
+    float: left;
+ }
+
+ .time {
+    float: right;
+    padding-right: 1em;
+ }
+
+ .request-name {
+    float: left;
+ }
+
+ .options {
+    float: right;
+ }
+
+ .section {
+    padding-bottom: 1em;
+ }
