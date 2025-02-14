@@ -3,7 +3,7 @@ import './achievements.css'
 
 export function Achievements() {
   return (
-    <main class="container-fluid bg-dark text-center">
+    <main class="achievements-main container-fluid bg-dark text-center">
             <h1>Achievements</h1>
             <div class="achievement">
                 <h3>Friendly</h3>

@@ -3,17 +3,17 @@ import './goals.css'
 
 export function Goals() {
   return (
-    <main className="container-fluid bg-dark text-center">
+    <main className="goals-main container-fluid bg-dark text-center">
             <h1 id="name">[Name]'s goals</h1>
             <p>
                 <span className="goal">Read the BOM daily</span>
                 <span className="streak">(2 day streak!)</span>
-                <button className="btn btn-primary">1 hour remaining</button>
+                <button className="reset btn btn-primary">1 hour remaining</button>
             </p>
             <p>
                 <span className="goal">Go on a date weekly</span>
                 <span className="streak">(7 week streak!)</span>
-                <button className="btn btn-primary" disabled>1 day 7 hours until reset</button>
+                <button className="reset btn btn-primary" disabled>1 day 7 hours until reset</button>
             </p>
             <form id="add-goal" action="goals.html">
                 <div>

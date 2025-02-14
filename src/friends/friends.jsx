@@ -3,7 +3,7 @@ import './friends.css';
 
 export function Friends() {
   return (
-    <main className="container-fluid bg-dark text-center">
+    <main className="friends-main container-fluid bg-dark text-center">
             <h1>Friends</h1>
             <div className="section">
                 <div className="friend">

@@ -1,4 +1,4 @@
-main p button {
+.reset {
     float: right;
 }
 
@@ -16,7 +16,7 @@ main p button {
     flex: 1;
 }
 
-main {
+.goals-main {
    padding-left: 20vw !important;
    padding-right: 20vw !important;
 }
