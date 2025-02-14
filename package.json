@@ -1,0 +1,23 @@
+{
+  "name": "jstartup",
+  "version": "1.0.0",
+  "description": "[My Notes](notes.md)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jclegg03/jStartup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jclegg03/jStartup/issues"
+  },
+  "homepage": "https://github.com/jclegg03/jStartup#readme",
+  "devDependencies": {
+    "vite": "^6.1.0"
+  }
+}
