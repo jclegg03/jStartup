@@ -86,9 +86,9 @@ For this deliverable I did the following:
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - Routing between login and voting components.
+- [x] **Bundled using Vite** - I set it up as an NPM package. I then installed vite to use during development.
+- [x] **Components** - The pages are now each their own jsx file with the header and footer being its own jsx file.
+- [x] **Router** - The app now uses a React router to navigate between the pages. Now this is pod racing.
 
 ## 🚀 React part 2: Reactivity
 
