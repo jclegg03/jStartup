@@ -7,8 +7,6 @@ header {
     flex: 0 10vh;
 }
 
-
-
 main {
     flex: 1 85vh;
     display: flex;

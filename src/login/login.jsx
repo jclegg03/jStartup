@@ -3,7 +3,7 @@ import './login.css'
 
 export function Login() {
   return (
-    <main className="container-fluid bg-dark text-center">
+    <main className="login-main container-fluid bg-dark text-center">
         <div>
             <h1>Login</h1>
             <form action="goals.html">

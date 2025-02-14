@@ -13,7 +13,7 @@ main {
     margin-right: 3em;
  }
 
- .goal {
+ .friend-goal {
     display: flex;
     flex-direction: row;
     padding-left: 0.5em;
