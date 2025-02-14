@@ -25,12 +25,10 @@ export function Friends() {
                     </p>
                 </div>
                 <div className="friend">
-                    <p>
                         <span>Bob</span>
                         <span>2 goals</span>
                         <span>(needs encouragement)</span>
                         <span><button className="btn btn-primary">▼</button></span>
-                    </p>
                     <p className="friend-goal">
                         <span>Meet someone new daily</span>
                         <span className="streak">(732 day streak!)</span>
