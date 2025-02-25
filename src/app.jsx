@@ -39,7 +39,10 @@ export default function App() {
                     path='/' 
                     element=
                     {
-                        <Login />
+                        <Login
+                            userName={userName}
+                            onLogin={(userName) => setUserName(userName)}
+                        />
                     } 
                     exact
                 />
