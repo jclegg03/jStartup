@@ -8,7 +8,9 @@ import { Friends } from './friends/friends';
 import { Achievements } from './achievements/achievements';
 
 export default function App() {
-  return (
+    const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "Unidentified")
+
+    return (
     <BrowserRouter>
         <div className="body bg-secondary text-light">
             <header className="container-fluid">
@@ -17,9 +19,11 @@ export default function App() {
                         <li className="nav-item">
                             <NavLink className='nav-link' to=''>Login</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className='nav-link' to='goals'>Your Goals</NavLink>
-                        </li>
+                        {userName !== 'Unidentified' && (
+                            <li className="nav-item">
+                                <NavLink className='nav-link' to='goals'>Your Goals</NavLink>
+                            </li>
+                        )}
                         <li className="nav-item">
                             <NavLink className='nav-link' to='friends'>Friends</NavLink>
                         </li>
@@ -31,7 +35,14 @@ export default function App() {
             </header>
 
             <Routes>
-                <Route path='/' element={<Login />} exact />
+                <Route
+                    path='/' 
+                    element=
+                    {
+                        <Login />
+                    } 
+                    exact
+                />
                 <Route path='/goals' element={<Goals />} />
                 <Route path='/friends' element={<Friends />} />
                 <Route path='/achievements' element={<Achievements />} />
