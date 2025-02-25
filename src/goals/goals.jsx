@@ -28,7 +28,7 @@ export function Goals() {
             <div id="achievement">
                 <h4>New Achievement</h4>
                 <div>
-                    <img id="achievement-image" src="images/Handshake.jpg"/>
+                    <img id="achievement-image" src="Handshake.jpg"/>
                     Friendly
                     <button id="x-button" className="btn btn-primary">❌</button>
                 </div>
