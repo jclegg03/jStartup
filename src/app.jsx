@@ -24,12 +24,16 @@ export default function App() {
                                 <NavLink className='nav-link' to='goals'>Your Goals</NavLink>
                             </li>
                         )}
-                        <li className="nav-item">
-                            <NavLink className='nav-link' to='friends'>Friends</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className='nav-link' to='achievements'>Achievements</NavLink>
-                        </li>
+                        {userName !== 'Unidentified' && (
+                            <li className="nav-item">
+                                <NavLink className='nav-link' to='friends'>Friends</NavLink>
+                            </li>
+                        )}
+                        {userName !== 'Unidentified' && (
+                            <li className="nav-item">
+                                <NavLink className='nav-link' to='achievements'>Achievements</NavLink>
+                            </li>
+                        )}
                     </menu>
                 </nav>
             </header>
