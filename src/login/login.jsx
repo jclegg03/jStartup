@@ -1,20 +1,24 @@
 import React from 'react';
 import './login.css'
+import { useNavigate } from 'react-router-dom';
 
 export function Login(props) {
     const [userName, setUserName] = React.useState(props.userName)
     const [password, setPassword] = React.useState('')
+    const navigate = useNavigate();
     
     async function loginUser()
     {
         localStorage.setItem('userName', userName)
         props.onLogin(userName)
+        navigate('/goals')
     }
 
     async function createUser()
     {
         localStorage.setItem('userName', userName)
         props.onLogin(userName)
+        navigate('/goals')
     }
 
     return (

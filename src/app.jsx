@@ -16,9 +16,11 @@ export default function App() {
             <header className="container-fluid">
                 <nav className="navbar fixed-top navbar-dark">
                     <menu className="navbar-nav">
-                        <li className="nav-item">
-                            <NavLink className='nav-link' to=''>Login</NavLink>
-                        </li>
+                        {userName === 'Unidentified' && (
+                            <li className="nav-item">
+                                <NavLink className='nav-link' to=''>Login</NavLink>
+                            </li>
+                        )}
                         {userName !== 'Unidentified' && (
                             <li className="nav-item">
                                 <NavLink className='nav-link' to='goals'>Your Goals</NavLink>
