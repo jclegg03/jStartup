@@ -1,10 +1,11 @@
 import React from 'react';
 import './goals.css'
+import { Goal } from './goal';
 
 export function Goals(props) {
     const userName = props.userName
     return (
-    <main className="goals-main container-fluid bg-dark text-center">
+        <main className="goals-main container-fluid bg-dark text-center">
             <h1 id="name">{userName}'s goals</h1>
             <p>
                 <span className="goal">Read the BOM daily</span>
@@ -16,6 +17,7 @@ export function Goals(props) {
                 <span className="streak">(7 week streak!)</span>
                 <button className="reset btn btn-primary" disabled>1 day 7 hours until reset</button>
             </p>
+            <Goal/>
             <form id="add-goal" action="goals.html">
                 <div>
                     <button className="btn btn-primary" type="submit">+</button>
