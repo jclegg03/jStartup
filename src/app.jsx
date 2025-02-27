@@ -52,7 +52,13 @@ export default function App() {
                     } 
                     exact
                 />
-                <Route path='/goals' element={<Goals />} />
+                <Route 
+                    path='/goals'
+                    element=
+                        {<Goals
+                            userName={userName}
+                        />}
+                />
                 <Route path='/friends' element={<Friends />} />
                 <Route path='/achievements' element={<Achievements />} />
                 <Route path='*' element={<NotFound />} />
