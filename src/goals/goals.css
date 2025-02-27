@@ -8,7 +8,7 @@
     padding-left: 1em;
 }
 
-.goal {
+.goal-text {
     float: left;
 }
 
@@ -19,6 +19,14 @@
 .goals-main {
    padding-left: 20vw !important;
    padding-right: 20vw !important;
+}
+
+.goal {
+    padding-bottom: 52px;
+}
+
+#goals {
+    list-style-type:none;
 }
 
 #achievement {
