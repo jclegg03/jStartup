@@ -9,6 +9,8 @@ import { Achievements } from './achievements/achievements';
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "Unidentified")
+    const [goals, setGoals] = React.useState(localStorage.getItem('goals') || [])
+    const [state, setState] = React.useState(0)
 
     return (
     <BrowserRouter>
@@ -57,6 +59,10 @@ export default function App() {
                     element=
                         {<Goals
                             userName={userName}
+                            goals={goals}
+                            setGoals={(goals) => setGoals(goals)}
+                            state={state}
+                            setState={(state) => setState(state)}
                         />}
                 />
                 <Route path='/friends' element={<Friends />} />

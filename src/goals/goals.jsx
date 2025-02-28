@@ -6,16 +6,20 @@ export function Goals(props) {
     const userName = props.userName
     const [goalText, setGoalText] = React.useState('')
     const [goalType, setGoalType] = React.useState('Daily')
+    
+    React.useEffect(() => {
+        updateGoals(JSON.parse(props.goals))
+    },[])
 
     async function saveGoal()
     {
-        const date = new Date().toUTCString();
-        const time = new Date().get
+        const date = new Date().toUTCString()
         const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date}
 
         updateGoalsLocal(newGoal)
     }
 
+    //Updates the stored goal data with the new goal.
     function updateGoalsLocal(newGoal)
     {
         // goalList is used only to update the local storage.
@@ -29,25 +33,42 @@ export function Goals(props) {
         goalList.push(newGoal)
 
         localStorage.setItem('goals', JSON.stringify(goalList))
+        updateGoals(goalList)
+    }
+
+    function updateGoals(goalList)
+    {
+        let goalElements = []
+        for(let i = 0; i < goalList.length; i++)
+        {
+            let goal = goalList[i]
+            const type = goal.goalType
+            const labels = ["", '']
+            if(type === 'Daily')
+            {
+                labels[0] = 'day'
+            }
+            else if(type === 'Weekly')
+            {
+                labels[0] = 'week'
+            }
+            goalElements.push(
+                <Goal
+                    goal={goal.goalText}
+                    labels={labels}
+                />
+            )
+        }
+        props.setGoals(goalElements)
     }
 
     return (
         <main className="goals-main container-fluid bg-dark text-center">
             <h1 id="name">{userName}'s goals</h1>
             <ul id='goals'>
-                <li className='goal'>
-                    <span className="goal-text">Read the BOM daily</span>
-                    <span className="streak">(2 day streak!)</span>
-                    <button className="reset btn btn-primary">1 hour remaining</button>
-                </li>
-                <li className='goal'>
-                    <span className="goal-text">Go on a date weekly</span>
-                    <span className="streak">(7 week streak!)</span>
-                    <button className="reset btn btn-primary" disabled>1 day 7 hours until reset</button>
-                </li>
-                <Goal
-                    goal='Eat less'
-                />
+                {
+                    props.goals
+                }
             </ul>
             <div id="add-goal">
                 <div>
