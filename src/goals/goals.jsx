@@ -4,6 +4,32 @@ import { Goal } from './goal';
 
 export function Goals(props) {
     const userName = props.userName
+    const [goalText, setGoalText] = React.useState('')
+    const [goalType, setGoalType] = React.useState('Daily')
+
+    async function saveGoal()
+    {
+        const date = new Date().toLocaleDateString();
+        const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date}
+
+        updateGoalsLocal(newGoal)
+    }
+
+    function updateGoalsLocal(newGoal)
+    {
+        // goalList is used only to update the local storage.
+        let goalList = []
+        const goalsText = localStorage.getItem('goals')
+        if(goalsText)
+        {
+            goalList = JSON.parse(goalsText)
+        }
+
+        goalList.push(newGoal)
+
+        localStorage.setItem('goals', JSON.stringify(goalList))
+    }
+
     return (
         <main className="goals-main container-fluid bg-dark text-center">
             <h1 id="name">{userName}'s goals</h1>
@@ -22,16 +48,16 @@ export function Goals(props) {
                     goal='Eat less'
                 />
             </ul>
-            <form id="add-goal" action="goals.html">
+            <div id="add-goal">
                 <div>
-                    <button className="btn btn-primary" type="submit">+</button>
-                    <input type="text" placeholder="New Goal"/>
-                    <select>
+                    <button className="btn btn-primary" onClick={() => saveGoal()} disabled={!goalText}>+</button>
+                    <input type="text" onChange={(e) => setGoalText(e.target.value)} placeholder="New Goal"/>
+                    <select onChange={(e) => setGoalType(e.target.value)}>
                         <option>Daily</option>
                         <option>Weekly</option>
                     </select>
                 </div>
-            </form>
+            </div>
             <div id="achievement">
                 <h4>New Achievement</h4>
                 <div>
