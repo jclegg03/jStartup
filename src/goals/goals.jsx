@@ -9,8 +9,15 @@ export function Goals(props) {
     
     React.useEffect(() => {
         let goals = []
-        goals = JSON.parse(props.goals)
-        updateGoals(goals)
+        try 
+        {
+            goals = JSON.parse(props.goals)
+            updateGoals(goals)
+        }
+        catch (error)
+        {
+            
+        }
     },[])
 
     async function saveGoal()
