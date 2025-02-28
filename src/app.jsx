@@ -33,11 +33,11 @@ export default function App() {
                                 <NavLink className='nav-link' to='friends'>Friends</NavLink>
                             </li>
                         )}
-                        {userName !== 'Unidentified' && (
+                        {/* {userName !== 'Unidentified' && (
                             <li className="nav-item">
                                 <NavLink className='nav-link' to='achievements'>Achievements</NavLink>
                             </li>
-                        )}
+                        )} */}
                     </menu>
                 </nav>
             </header>
@@ -66,7 +66,7 @@ export default function App() {
                         />}
                 />
                 <Route path='/friends' element={<Friends />} />
-                <Route path='/achievements' element={<Achievements />} />
+                {/* <Route path='/achievements' element={<Achievements />} /> */}
                 <Route path='*' element={<NotFound />} />
             </Routes>
 

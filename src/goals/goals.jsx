@@ -80,7 +80,7 @@ export function Goals(props) {
                     </select>
                 </div>
             </div>
-            <div id="achievement">
+            {/* <div id="achievement">
                 <h4>New Achievement</h4>
                 <div>
                     <img id="achievement-image" src="Handshake.jpg"/>
@@ -88,7 +88,7 @@ export function Goals(props) {
                     <button id="x-button" className="btn btn-primary">❌</button>
                 </div>
                 <p>Add a friend</p>
-            </div>
+            </div> */}
         </main>
     );
 }
