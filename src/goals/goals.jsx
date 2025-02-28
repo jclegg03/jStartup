@@ -8,7 +8,9 @@ export function Goals(props) {
     const [goalType, setGoalType] = React.useState('Daily')
     
     React.useEffect(() => {
-        updateGoals(JSON.parse(props.goals))
+        let goals = []
+        goals = JSON.parse(props.goals)
+        updateGoals(goals)
     },[])
 
     async function saveGoal()
