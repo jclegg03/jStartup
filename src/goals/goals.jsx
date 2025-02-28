@@ -9,7 +9,8 @@ export function Goals(props) {
 
     async function saveGoal()
     {
-        const date = new Date().toLocaleDateString();
+        const date = new Date().toUTCString();
+        const time = new Date().get
         const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date}
 
         updateGoalsLocal(newGoal)
