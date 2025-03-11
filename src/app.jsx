@@ -11,6 +11,7 @@ export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "Unidentified")
     const [goals, setGoals] = React.useState(localStorage.getItem('goals') || [])
     const [state, setState] = React.useState(0)
+    const [notifications, setNotifications] = React.useState([])
 
     return (
     <BrowserRouter>
@@ -65,7 +66,11 @@ export default function App() {
                             setState={(state) => setState(state)}
                         />}
                 />
-                <Route path='/friends' element={<Friends />} />
+                <Route path='/friends' element=
+                    {<Friends
+                        notifications={notifications}
+                        setNotifications={(notifications) => setNotifications(notifications)}
+                    />} />
                 {/* <Route path='/achievements' element={<Achievements />} /> */}
                 <Route path='*' element={<NotFound />} />
             </Routes>

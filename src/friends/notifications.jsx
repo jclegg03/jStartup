@@ -1,10 +1,11 @@
 import React from "react";
 import { Notification } from "./notification";
 
-export function Notifications()
+export function Notifications(props)
 {
     return (
-    <div id="notifications">
+    <ul id="notifications">
         <Notification/>
-    </div>)
+    </ul>
+    )
 }
