@@ -1,6 +1,6 @@
 import React from 'react';
 import './friends.css';
-import { Notification } from './notification';
+import { Notifications } from './notifications';
 
 export function Friends() {
   return (
@@ -62,7 +62,7 @@ export function Friends() {
                     </p>
                 </div>
             </div>
-            <Notification/>
+            <Notifications/>
         </main>
   );
 }
