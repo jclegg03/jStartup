@@ -29,6 +29,31 @@ export function Goals(props) {
         updateGoalsLocal(newGoal)
     }
 
+    function deleteGoal(id)
+    {
+        // goalList is used only to update the local storage.
+        let goalList = []
+        const goalsText = localStorage.getItem('goals')
+        if(goalsText)
+        {
+            goalList = JSON.parse(goalsText)
+        }
+
+        for(let i = 0; i < goalList.length; i++)
+        {
+            let goal = goalList[i]
+            let currentID = goal.id
+            if(currentID == id)
+            {
+                goalList.splice(i, 1)
+                break
+            }
+        }
+
+        localStorage.setItem('goals', JSON.stringify(goalList))
+        updateGoals(goalList)
+    }
+
     //Updates the stored goal data with the new goal.
     function updateGoalsLocal(newGoal)
     {
