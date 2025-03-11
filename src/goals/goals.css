@@ -1,7 +1,11 @@
+.delete {
+    float: right;
+    margin-left: 1em;
+}
+
 .reset {
     float: right;
 }
-
 
 .streak {
     float: left;
