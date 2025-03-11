@@ -1,6 +1,7 @@
 import React from 'react';
 import './goals.css'
 import { Goal } from './goal';
+import { makeId } from './id';
 
 export function Goals(props) {
     const userName = props.userName
@@ -23,7 +24,7 @@ export function Goals(props) {
     async function saveGoal()
     {
         const date = new Date().toUTCString()
-        const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date}
+        const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId()}
 
         updateGoalsLocal(newGoal)
     }
@@ -65,6 +66,7 @@ export function Goals(props) {
                 <Goal
                     goal={goal.goalText}
                     labels={labels}
+                    id={goal.id}
                 />
             )
         }
