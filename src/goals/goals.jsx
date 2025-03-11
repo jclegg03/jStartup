@@ -92,6 +92,7 @@ export function Goals(props) {
                     goal={goal.goalText}
                     labels={labels}
                     id={goal.id}
+                    delete={(id) => deleteGoal(id)}
                 />
             )
         }
