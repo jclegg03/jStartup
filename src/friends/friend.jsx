@@ -6,7 +6,7 @@ export function Friend(props)
         <div id={props.id} className="friend">
             <span>{props.name}</span>
             <span>1 goal</span>
-            <span>(needs encouragement)</span>
+            <span>(going strong!)</span>
             <span><button className="btn btn-primary">▼</button></span>
         <p className="friend-goal">
             <span className='friend-goal-text'>Meet someone new daily</span>
