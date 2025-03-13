@@ -126,7 +126,7 @@ export function Friends(props) {
                         <p>
                             <span className="request-name">Jeff</span>
                             <span className="options">
-                                <button className="btn btn-primary">✅</button>
+                                <button className="add-right-margin btn btn-primary">✅</button>
                                 <button className="btn btn-primary">❌</button>
                             </span>
                         </p>
