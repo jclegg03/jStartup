@@ -117,7 +117,7 @@ export function Friends(props) {
                     <div className="section">
                         <h2>Add friends</h2>
                         <div id="add">
-                            <button className="btn btn-primary" onClick={() => saveFriend()}>➕</button>
+                            <button className="btn btn-primary" disabled={!friendName} onClick={() => saveFriend()}>➕</button>
                             <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username"/>
                         </div>
                     </div>
