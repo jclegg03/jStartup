@@ -79,9 +79,9 @@ export function Friends(props) {
                 <h1>Friends</h1>
                 <div className="section">
                     <div className="friend">
-                        <span>Sally</span>
-                        <span>3 goals</span>
-                        <span>(going strong!)</span>
+                        <span className='add-right-margin'>Sally</span>
+                        <span className='add-right-margin'>3 goals</span>
+                        <span className='add-right-margin'>(going strong!)</span>
                         <span><button className="btn btn-primary">▼</button></span>
                         <p className="friend-goal">
                             <span className='friend-goal-text'>Run daily</span>
@@ -97,9 +97,9 @@ export function Friends(props) {
                         </p>
                     </div>
                     <div className="friend">
-                            <span>Bob</span>
-                            <span>2 goals</span>
-                            <span>(needs encouragement)</span>
+                            <span className='add-right-margin'>Bob</span>
+                            <span className='add-right-margin'>2 goals</span>
+                            <span className='add-right-margin'>(needs encouragement)</span>
                             <span><button className="btn btn-primary">▼</button></span>
                         <p className="friend-goal">
                             <span className='friend-goal-text'>Meet someone new daily</span>

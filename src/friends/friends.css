@@ -9,6 +9,10 @@
     border-width: 1px;
  }
 
+.add-right-margin {
+   margin-right: 0.5em;
+}
+
 .remove-button {
    display: flex;
    flex-direction: row;
@@ -23,7 +27,6 @@
 
  .encourage {
     padding-right: 1em;
-    padding-bottom: 0em;
  }
 
  .friend-goal-text {
