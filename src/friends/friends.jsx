@@ -1,9 +1,89 @@
 import React from 'react';
 import './friends.css';
 import { Notifications } from './notifications';
+import { makeId } from '../goals/id'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
+    const [friendName, setFriendName] = React.useState("")
+
+    function saveFriend()
+        {
+            const newFriend = {name: friendName, id: makeId()}
+            console.log(newFriend)
+            // updateGoalsLocal(newFriend)
+        }
+    
+        function deleteGoal(id)
+        {
+            // goalList is used only to update the local storage.
+            let goalList = []
+            const goalsText = localStorage.getItem('goals')
+            if(goalsText)
+            {
+                goalList = JSON.parse(goalsText)
+            }
+    
+            for(let i = 0; i < goalList.length; i++)
+            {
+                let goal = goalList[i]
+                let currentID = goal.id
+                if(currentID == id)
+                {
+                    goalList.splice(i, 1)
+                    break
+                }
+            }
+    
+            localStorage.setItem('goals', JSON.stringify(goalList))
+            updateGoals(goalList)
+        }
+    
+        //Updates the stored goal data with the new goal.
+        function updateGoalsLocal(newGoal)
+        {
+            // goalList is used only to update the local storage.
+            let goalList = []
+            const goalsText = localStorage.getItem('goals')
+            if(goalsText)
+            {
+                goalList = JSON.parse(goalsText)
+            }
+    
+            goalList.push(newGoal)
+    
+            localStorage.setItem('goals', JSON.stringify(goalList))
+            updateGoals(goalList)
+        }
+    
+        function updateGoals(goalList)
+        {
+            let goalElements = []
+            for(let i = 0; i < goalList.length; i++)
+            {
+                let goal = goalList[i]
+                const type = goal.goalType
+                const labels = ["", '']
+                if(type === 'Daily')
+                {
+                    labels[0] = 'day'
+                }
+                else if(type === 'Weekly')
+                {
+                    labels[0] = 'week'
+                }
+                goalElements.push(
+                    <Goal
+                        goal={goal.goalText}
+                        labels={labels}
+                        id={goal.id}
+                        delete={(id) => deleteGoal(id)}
+                        key={goal.id}
+                    />
+                )
+            }
+            props.setGoals(goalElements)
+        }
     
     return (
         <main className="friends-main container-fluid bg-dark text-center">
@@ -46,12 +126,10 @@ export function Friends(props) {
                 <div className="section">
                     <div className="section">
                         <h2>Add friends</h2>
-                        <form action="friends.html">
-                            <div id="add">
-                                <button className="btn btn-primary" type="submit">➕</button>
-                                <input className="form-control" type="text" placeholder="Enter Friend's username"/>
-                            </div>
-                        </form>
+                        <div id="add">
+                            <button className="btn btn-primary" onClick={() => saveFriend()}>➕</button>
+                            <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username"/>
+                        </div>
                     </div>
                     <div className="section">
                         <h3>Friend Requests</h3>
