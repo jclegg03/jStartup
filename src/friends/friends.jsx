@@ -3,6 +3,8 @@ import './friends.css';
 import { Notifications } from './notifications';
 
 export function Friends(props) {
+    const [friends, setFriends] = React.useState([])
+    
     return (
         <main className="friends-main container-fluid bg-dark text-center">
                 <h1>Friends</h1>
