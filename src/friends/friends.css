@@ -10,11 +10,17 @@
  }
 
  .encourage {
-    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0em;
+ }
+
+ .friend-goal-text {
+   float: left;
  }
 
  .friend-goal {
-    display: flex;
+   padding-top: 0.5em;
+   padding-bottom: 0.5em;
     flex-direction: row;
     padding-left: 0.5em;
  }
