@@ -12,7 +12,9 @@ export function Friend(props)
             <span className='friend-goal-text'>Meet someone new daily</span>
             <span className="streak">(732 day streak!)</span>
         </p>
-        <button onClick={() => props.delete(props.id)}>Remove Friend</button>
+        <div className='remove-button'>
+            <button className="btn btn-secondary" onClick={() => props.delete(props.id)}>Remove Friend</button>
+        </div>
         </div>
     )
 }
