@@ -84,15 +84,15 @@ export function Friends(props) {
                         <span>(going strong!)</span>
                         <span><button className="btn btn-primary">▼</button></span>
                         <p className="friend-goal">
-                            <span>Run daily</span>
+                            <span className='friend-goal-text'>Run daily</span>
                             <span className="streak">(2 day streak!)</span>
                         </p>
                         <p className="friend-goal">
-                            <span>Bike weekly</span>
+                            <span className='friend-goal-text'>Bike weekly</span>
                             <span className="streak">(1 week streak!)</span>
                         </p>
                         <p className="friend-goal">
-                            <span>Consume no added sugars</span>
+                            <span className='friend-goal-text'>Consume no added sugars</span>
                             <span className="streak">(1 day streak!)</span>
                         </p>
                     </div>
@@ -102,11 +102,11 @@ export function Friends(props) {
                             <span>(needs encouragement)</span>
                             <span><button className="btn btn-primary">▼</button></span>
                         <p className="friend-goal">
-                            <span>Meet someone new daily</span>
+                            <span className='friend-goal-text'>Meet someone new daily</span>
                             <span className="streak">(732 day streak!)</span>
                         </p>
                         <p className="friend-goal">
-                            <span>Make home cooked meal daily</span>
+                            <span className='friend-goal-text'>Make home cooked meal daily</span>
                             <span className="streak">(3 hours remaining)</span>
                             <span className="encourage"><button className="btn btn-primary">Encourage</button></span>
                         </p>

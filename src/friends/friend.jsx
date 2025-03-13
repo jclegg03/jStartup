@@ -9,7 +9,7 @@ export function Friend(props)
             <span>(needs encouragement)</span>
             <span><button className="btn btn-primary">▼</button></span>
         <p className="friend-goal">
-            <span>Meet someone new daily</span>
+            <span className='friend-goal-text'>Meet someone new daily</span>
             <span className="streak">(732 day streak!)</span>
         </p>
         </div>
