@@ -2,6 +2,7 @@ import React from 'react';
 import './friends.css';
 import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
+import { Friend } from './friend'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
@@ -10,79 +11,67 @@ export function Friends(props) {
     function saveFriend()
         {
             const newFriend = {name: friendName, id: makeId()}
-            console.log(newFriend)
-            // updateGoalsLocal(newFriend)
+            updateFriendsLocal(newFriend)
         }
     
-        function deleteGoal(id)
+        function deleteFriend(id)
         {
-            // goalList is used only to update the local storage.
-            let goalList = []
-            const goalsText = localStorage.getItem('goals')
-            if(goalsText)
+            // friendList is used only to update the local storage.
+            let friendList = []
+            const friendsText = localStorage.getItem('friends')
+            if(friendsText)
             {
-                goalList = JSON.parse(goalsText)
+                friendList = JSON.parse(friendsText)
             }
     
-            for(let i = 0; i < goalList.length; i++)
+            for(let i = 0; i < friendList.length; i++)
             {
-                let goal = goalList[i]
-                let currentID = goal.id
+                let friend = friendList[i]
+                let currentID = friend.id
                 if(currentID == id)
                 {
-                    goalList.splice(i, 1)
+                    friendList.splice(i, 1)
                     break
                 }
             }
     
-            localStorage.setItem('goals', JSON.stringify(goalList))
-            updateGoals(goalList)
+            localStorage.setItem('friends', JSON.stringify(friendList))
+            updateFriends(friendList)
         }
     
-        //Updates the stored goal data with the new goal.
-        function updateGoalsLocal(newGoal)
+        //Updates the stored friend data with the new friend.
+        function updateFriendsLocal(newFriend)
         {
-            // goalList is used only to update the local storage.
-            let goalList = []
-            const goalsText = localStorage.getItem('goals')
-            if(goalsText)
+            // friendList is used only to update the local storage.
+            let friendList = []
+            const friendText = localStorage.getItem('friends')
+            if(friendText)
             {
-                goalList = JSON.parse(goalsText)
+                friendList = JSON.parse(friendText)
             }
     
-            goalList.push(newGoal)
+            friendList.push(newFriend)
     
-            localStorage.setItem('goals', JSON.stringify(goalList))
-            updateGoals(goalList)
+            localStorage.setItem('friends', JSON.stringify(friendList))
+            updateFriends(friendList)
         }
     
-        function updateGoals(goalList)
+        function updateFriends(friendList)
         {
-            let goalElements = []
-            for(let i = 0; i < goalList.length; i++)
+            let friendElements = []
+            for(let i = 0; i < friendList.length; i++)
             {
-                let goal = goalList[i]
-                const type = goal.goalType
-                const labels = ["", '']
-                if(type === 'Daily')
-                {
-                    labels[0] = 'day'
-                }
-                else if(type === 'Weekly')
-                {
-                    labels[0] = 'week'
-                }
-                goalElements.push(
-                    <Goal
-                        goal={goal.goalText}
-                        labels={labels}
-                        id={goal.id}
-                        delete={(id) => deleteGoal(id)}
-                        key={goal.id}
+                let friend = friendList[i]
+                friendElements.push(
+                    <Friend
+                        name={friend.name}
+                        id={friend.id}
+                        delete={(id) => deleteFriend(id)}
+                        key={friend.id}
                     />
                 )
             }
-            props.setGoals(goalElements)
+            setFriends(friendElements)
         }
     
     return (
@@ -121,7 +110,8 @@ export function Friends(props) {
                             <span className="streak">(3 hours remaining)</span>
                             <span className="encourage"><button className="btn btn-primary">Encourage</button></span>
                         </p>
-                    </div>   
+                    </div>  
+                    {friends} 
                 </div>
                 <div className="section">
                     <div className="section">
