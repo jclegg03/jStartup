@@ -21,7 +21,7 @@ export function Goals(props) {
         }
     },[])
 
-    async function saveGoal()
+    function saveGoal()
     {
         const date = new Date().toUTCString()
         const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId()}
