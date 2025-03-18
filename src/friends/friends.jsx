@@ -129,7 +129,14 @@ export function Friends(props) {
                     </div>
                     <div className="section">
                         <h3>Friend Requests</h3>
-                        <p>
+                        <p className='friend-request'>
+                            <span className="request-name">Jeff</span>
+                            <span className="options">
+                                <button className="add-right-margin btn btn-primary">✅</button>
+                                <button className="btn btn-primary">❌</button>
+                            </span>
+                        </p>
+                        <p className='friend-request'>
                             <span className="request-name">Jeff</span>
                             <span className="options">
                                 <button className="add-right-margin btn btn-primary">✅</button>
