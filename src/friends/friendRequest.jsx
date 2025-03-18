@@ -6,7 +6,7 @@ export function FriendRequest(props) {
             <span className="request-name">{props.name}</span>
             <span className="options">
                 <button onClick={() => props.add(props.name)} className="add-right-margin btn btn-primary">✅</button>
-                <button className="btn btn-secondary">❌</button>
+                <button onClick={() => props.delete(props.id)} className="btn btn-secondary">❌</button>
             </span>
         </p>
     )
