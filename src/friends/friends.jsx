@@ -11,14 +11,15 @@ export function Friends(props) {
     const [friendRequests, setFriendRequests] = React.useState([
         <FriendRequest
             name='Fred'
-            add={(name) => saveFriend(name)}
+            add={(name, id) => saveFriend(name, id)}
             id={makeId()}
             delete={(id) => deleteFriendRequest(id)}
         />,
         <FriendRequest
             name='Jeff'
-            add={(name) => saveFriend(name)}
+            add={(name, id) => saveFriend(name, id)}
             id={makeId()}
+            delete={(id) => deleteFriendRequest(id)}
         />])
 
     function saveFriend() {
@@ -26,9 +27,10 @@ export function Friends(props) {
         updateFriendsLocal(newFriend)
     }
 
-    function saveFriend(name) {
+    function saveFriend(name, id) {
         const newFriend = { name: name, id: makeId() }
         updateFriendsLocal(newFriend)
+        deleteFriendRequest(id)
     }
 
     function deleteFriendRequest(id) {
