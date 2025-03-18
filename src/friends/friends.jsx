@@ -3,12 +3,13 @@ import './friends.css';
 import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
+import { FriendRequest } from './friendRequest';
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
 
-    function saveFriend()
+        function saveFriend()
         {
             const newFriend = {name: friendName, id: makeId()}
             updateFriendsLocal(newFriend)
@@ -136,13 +137,7 @@ export function Friends(props) {
                                 <button className="btn btn-primary">❌</button>
                             </span>
                         </p>
-                        <p className='friend-request'>
-                            <span className="request-name">Jeff</span>
-                            <span className="options">
-                                <button className="add-right-margin btn btn-primary">✅</button>
-                                <button className="btn btn-primary">❌</button>
-                            </span>
-                        </p>
+                        <FriendRequest/>
                     </div>
                 </div>
                 <Notifications
