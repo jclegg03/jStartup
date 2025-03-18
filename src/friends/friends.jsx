@@ -3,54 +3,64 @@ import './friends.css';
 import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
-import { FriendRequest } from './friendRequest';
+// import { FriendRequest } from './friendRequest';
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
-    const [friendRequests, setFriendRequests] = React.useState([
-        <FriendRequest
-            name='Fred'
-            add={(name, id) => saveFriend(name, id)}
-            id={makeId()}
-            delete={(id) => deleteFriendRequest(id)}
-        />,
-        <FriendRequest
-            name='Jeff'
-            add={(name, id) => saveFriend(name, id)}
-            id={makeId()}
-            delete={(id) => deleteFriendRequest(id)}
-        />])
+    // const [friendRequests, setFriendRequests] = React.useState([])
+    // let requests =
+    //     [<FriendRequest
+    //         name='Fred'
+    //         add={(name, id) => saveFriend(name, id)}
+    //         id={makeId()}
+    //         delete={(id) => deleteFriendRequest(id)}
+    //     />,
+    //     <FriendRequest
+    //         name='Jeff'
+    //         add={(name, id) => saveFriend(name, id)}
+    //         id={makeId()}
+    //         delete={(id) => deleteFriendRequest(id)}
+    //     />]
+    // let requestsSet = false
 
+    // React.useEffect(() => {
+    //     try {
+    //         if (!requestsSet) {
+    //             setFriendRequests(requests)
+    //             requestsSet = true
+    //         }
+    //     }
+    //     catch (error) {
+
+    //     }
+    // }, [])
+
+    //used by the search friend section
     function saveFriend() {
         const newFriend = { name: friendName, id: makeId() }
         updateFriendsLocal(newFriend)
     }
 
-    function saveFriend(name, id) {
-        const newFriend = { name: name, id: makeId() }
-        updateFriendsLocal(newFriend)
-        deleteFriendRequest(id)
-    }
+    //used by the friend requests
+    // function saveFriend(name, id) {
+    //     const newFriend = { name: name, id: makeId() }
+    //     updateFriendsLocal(newFriend)
+    //     deleteFriendRequest(id)
+    // }
 
-    function deleteFriendRequest(id) {
-        let requests = []
-        for (let i = 0; i < friendRequests.length; i++) {
-            let request = friendRequests[i]
-            requests.push(request)
-        }
+    // function deleteFriendRequest(id) {
+    //     for (let i = 0; i < requests.length; i++) {
+    //         let request = requests[i]
+    //         let currentID = request.props.id
+    //         if (currentID == id) {
+    //             requests.splice(i, 1)
+    //             break
+    //         }
+    //     }
 
-        for (let i = 0; i < requests.length; i++) {
-            let request = requests[i]
-            let currentID = request.props.id
-            if (currentID == id) {
-                requests.splice(i, 1)
-                break
-            }
-        }
-
-        setFriendRequests(requests)
-    }
+    //     setFriendRequests(requests)
+    // }
 
     function deleteFriend(id) {
         // friendList is used only to update the local storage.
@@ -151,10 +161,10 @@ export function Friends(props) {
                         <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username" />
                     </div>
                 </div>
-                <div className="section">
+                {/* <div className="section">
                     <h3>Friend Requests</h3>
                     {friendRequests}
-                </div>
+                </div> */}
             </div>
             <Notifications
                 notifications={props.notifications}
