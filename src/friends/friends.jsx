@@ -8,7 +8,15 @@ import { FriendRequest } from './friendRequest';
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
-    const [friendRequests, setFriendRequests] = React.useState([<FriendRequest/>, <FriendRequest/>])
+    const [friendRequests, setFriendRequests] = React.useState([
+        <FriendRequest
+            name='Fred'
+            add={(name) => saveFriend(name)}
+        />, 
+        <FriendRequest
+            name='Jeff'
+            add={(name) => saveFriend(name)}
+        />])
 
         function saveFriend()
         {
