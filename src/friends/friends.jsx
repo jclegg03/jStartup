@@ -13,6 +13,12 @@ export function Friends(props) {
             const newFriend = {name: friendName, id: makeId()}
             updateFriendsLocal(newFriend)
         }
+
+        function saveFriend(name)
+        {
+            const newFriend = {name: name, id: makeId()}
+            updateFriendsLocal(newFriend)
+        }
     
         function deleteFriend(id)
         {
