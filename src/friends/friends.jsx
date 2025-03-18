@@ -8,6 +8,7 @@ import { FriendRequest } from './friendRequest';
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
+    const [friendRequests, setFriendRequests] = React.useState([<FriendRequest/>, <FriendRequest/>])
 
         function saveFriend()
         {
@@ -130,14 +131,7 @@ export function Friends(props) {
                     </div>
                     <div className="section">
                         <h3>Friend Requests</h3>
-                        <p className='friend-request'>
-                            <span className="request-name">Jeff</span>
-                            <span className="options">
-                                <button className="add-right-margin btn btn-primary">✅</button>
-                                <button className="btn btn-primary">❌</button>
-                            </span>
-                        </p>
-                        <FriendRequest/>
+                        {friendRequests}
                     </div>
                 </div>
                 <Notifications
