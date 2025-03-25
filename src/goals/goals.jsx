@@ -92,9 +92,11 @@ export function Goals(props) {
                     goal={goal.goalText}
                     labels={labels}
                     id={goal.id}
+                    streak={goal.streak}
                     delete={(id) => deleteGoal(id)}
                     date={goal.date}
                     key={goal.id}
+                    update={(goals) => updateGoals(goals)}
                 />
             )
         }
