@@ -122,7 +122,7 @@ export function Friends(props) {
                     <span className='add-right-margin'>Sally</span>
                     <span className='add-right-margin'>3 goals</span>
                     <span className='add-right-margin'>(going strong!)</span>
-                    <span><button className="btn btn-primary">▼</button></span>
+                    {/* <span><button className="btn btn-primary">▼</button></span> */}
                     <p className="friend-goal">
                         <span className='friend-goal-text'>Run daily</span>
                         <span className="streak">(2 day streak!)</span>
@@ -140,7 +140,7 @@ export function Friends(props) {
                     <span className='add-right-margin'>Bob</span>
                     <span className='add-right-margin'>2 goals</span>
                     <span className='add-right-margin'>(needs encouragement)</span>
-                    <span><button className="btn btn-primary">▼</button></span>
+                    {/* <span><button className="btn btn-primary">▼</button></span> */}
                     <p className="friend-goal">
                         <span className='friend-goal-text'>Meet someone new daily</span>
                         <span className="streak">(732 day streak!)</span>

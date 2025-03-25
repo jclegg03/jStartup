@@ -6,7 +6,7 @@ export function Friend(props) {
             <span className='add-right-margin'>{props.name}</span>
             <span className='add-right-margin'>1 goal</span>
             <span className='add-right-margin'>(going strong!)</span>
-            <span><button className="btn btn-primary">▼</button></span>
+            {/* <span><button className="btn btn-primary">▼</button></span> */}
             <p className="friend-goal">
                 <span className='friend-goal-text'>Meet someone new daily</span>
                 <span className="streak">(732 day streak!)</span>
