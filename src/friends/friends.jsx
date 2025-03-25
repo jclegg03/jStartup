@@ -62,6 +62,10 @@ export function Friends(props) {
     //     setFriendRequests(requests)
     // }
 
+    React.useEffect(() => {
+            updateFriends(JSON.parse(localStorage.getItem('friends')))
+        },[])
+
     function deleteFriend(id) {
         // friendList is used only to update the local storage.
         let friendList = []
