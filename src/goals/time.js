@@ -1,5 +1,5 @@
 export function updateTimeLeft(goal, update) {
-    console.log(goal)
+    // console.log(goal)
     const curTime = new Date()
     const oldTime = new Date(goal.date)
     let interval = 0
@@ -45,6 +45,7 @@ export function updateTimeLeft(goal, update) {
             includeDays = true
         }
         dif += interval
+        // console.log('here')
 
         if (dif > 0) {
             const days = Math.floor(dif / (1000 * 60 * 60 * 24))
