@@ -23,13 +23,13 @@ export function Goals(props) {
         const day = 1000 * 60 * 60 * 24
         let date = new Date()
         if (goalType == "Daily") {
-            date -= (day * 2 - 1000)
+            date -= (day)
         }
         else {
-            date -= day * 7
+            date -= (day * 7)
         }
         date = new Date(date)
-        const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 1, date: date, id: makeId() }
+        const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId() }
 
         updateGoalsLocal(newGoal)
     }
