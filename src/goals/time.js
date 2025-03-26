@@ -21,6 +21,10 @@ export function updateTimeLeft(goal, update) {
     const mins = Math.floor(dif / (1000 * 60))
 
     let timeLeft = hours + " hours " + mins + " mins"
+    if(includeDays && days > 0)
+    {
+        timeLeft = days + " days " + timeLeft
+    }
     update(timeLeft)
 }
 
