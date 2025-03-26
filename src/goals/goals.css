@@ -16,6 +16,11 @@
     float: left;
 }
 
+#goals-input {
+    margin-left: .5em;
+    margin-right: .5em;
+}
+
 #add-goal {
     flex: 1;
 }

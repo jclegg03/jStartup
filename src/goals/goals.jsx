@@ -106,7 +106,7 @@ export function Goals(props) {
             <div id="add-goal">
                 <div>
                     <button className="btn btn-primary" onClick={() => saveGoal()} disabled={!goalText}>+</button>
-                    <input type="text" onChange={(e) => setGoalText(e.target.value)} placeholder="New Goal" />
+                    <input id="goals-input" type="text" onChange={(e) => setGoalText(e.target.value)} placeholder="New Goal" />
                     <select onChange={(e) => setGoalType(e.target.value)}>
                         <option>Daily</option>
                         <option>Weekly</option>
