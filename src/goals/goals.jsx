@@ -89,12 +89,9 @@ export function Goals(props) {
             }
             goalElements.push(
                 <Goal
-                    goal={goal.goalText}
+                    goal={goal}
                     labels={labels}
-                    id={goal.id}
-                    streak={goal.streak}
                     delete={(id) => deleteGoal(id)}
-                    date={goal.date}
                     key={goal.id}
                     update={(goals) => updateGoals(goals)}
                 />
