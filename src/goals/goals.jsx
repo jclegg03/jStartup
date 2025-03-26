@@ -7,44 +7,45 @@ export function Goals(props) {
     const userName = props.userName
     const [goalText, setGoalText] = React.useState('')
     const [goalType, setGoalType] = React.useState('Daily')
-    
+
     React.useEffect(() => {
         let goals = []
-        try 
-        {
+        try {
             goals = JSON.parse(props.goals)
             updateGoals(goals)
         }
-        catch (error)
-        {
-            
-        }
-    },[])
+        catch (error) {
 
-    function saveGoal()
-    {
-        const date = new Date().toUTCString()
-        const newGoal = {name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId()}
+        }
+    }, [])
+
+    function saveGoal() {
+        const day = 1000 * 60 * 60 * 24
+        let date = new Date()
+        if (goalType == "Daily") {
+            date -= (day * 2 - 1000)
+        }
+        else {
+            date -= day * 7
+        }
+        date = new Date(date)
+        const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 1, date: date, id: makeId() }
 
         updateGoalsLocal(newGoal)
     }
 
-    function deleteGoal(id)
-    {
+    function deleteGoal(id) {
         // goalList is used only to update the local storage.
         let goalList = []
         const goalsText = localStorage.getItem('goals')
-        if(goalsText)
-        {
+        if (goalsText) {
             goalList = JSON.parse(goalsText)
         }
 
-        for(let i = 0; i < goalList.length; i++)
-        {
+        for (let i = 0; i < goalList.length; i++) {
             let goal = goalList[i]
             let currentID = goal.id
-            if(currentID == id)
-            {
+            if (currentID == id) {
                 goalList.splice(i, 1)
                 break
             }
@@ -55,13 +56,11 @@ export function Goals(props) {
     }
 
     //Updates the stored goal data with the new goal.
-    function updateGoalsLocal(newGoal)
-    {
+    function updateGoalsLocal(newGoal) {
         // goalList is used only to update the local storage.
         let goalList = []
         const goalsText = localStorage.getItem('goals')
-        if(goalsText)
-        {
+        if (goalsText) {
             goalList = JSON.parse(goalsText)
         }
 
@@ -71,20 +70,16 @@ export function Goals(props) {
         updateGoals(goalList)
     }
 
-    function updateGoals(goalList)
-    {
+    function updateGoals(goalList) {
         let goalElements = []
-        for(let i = 0; i < goalList.length; i++)
-        {
+        for (let i = 0; i < goalList.length; i++) {
             let goal = goalList[i]
             const type = goal.goalType
             const labels = ["", '']
-            if(type === 'Daily')
-            {
+            if (type === 'Daily') {
                 labels[0] = 'day'
             }
-            else if(type === 'Weekly')
-            {
+            else if (type === 'Weekly') {
                 labels[0] = 'week'
             }
             goalElements.push(
@@ -111,7 +106,7 @@ export function Goals(props) {
             <div id="add-goal">
                 <div>
                     <button className="btn btn-primary" onClick={() => saveGoal()} disabled={!goalText}>+</button>
-                    <input type="text" onChange={(e) => setGoalText(e.target.value)} placeholder="New Goal"/>
+                    <input type="text" onChange={(e) => setGoalText(e.target.value)} placeholder="New Goal" />
                     <select onChange={(e) => setGoalType(e.target.value)}>
                         <option>Daily</option>
                         <option>Weekly</option>
