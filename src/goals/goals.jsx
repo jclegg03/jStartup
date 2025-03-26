@@ -26,7 +26,7 @@ export function Goals(props) {
             date -= (day)
         }
         else {
-            date -= (day)
+            date -= (day * 7)
         }
         date = new Date(date)
         const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId() }
