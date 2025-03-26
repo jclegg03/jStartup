@@ -94,8 +94,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [x] **All functionality implemented or mocked out** - I made a lot more components. My pride and joy is the timer and streak functionality I made in the time.js file.
+- [x] **Hooks** - React `useState` is used for variables that will be displayed. `useEffect` is used to force the page to render certain items correctly on reload/open. This is because some items aren't formatted correctly before being passed to the component that needs them.
 
 ## 🚀 Service deliverable
 
