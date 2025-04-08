@@ -1,43 +1,40 @@
 import React from 'react';
 import './login.css'
-import { useNavigate } from 'react-router-dom';
+import { Auth } from './auth'
 
 export function Login(props) {
     const [userName, setUserName] = React.useState(props.userName)
     const [password, setPassword] = React.useState('')
-    const navigate = useNavigate();
     
     async function loginUser()
     {
         localStorage.setItem('userName', userName)
         props.onLogin(userName)
-        navigate('/goals')
+        props.setAuth(true)
     }
 
     async function createUser()
     {
         localStorage.setItem('userName', userName)
         props.onLogin(userName)
-        navigate('/goals')
+    }
+
+    function auth()
+    {
+        if(props.authenticated) return
+        return <Auth
+            userName = {userName}
+            password = {password}
+            loginUser = {() => loginUser()}
+            createUser = {() => createUser()}
+            setUserName = {(userName) => setUserName(userName)}
+            setPassword = {(password) => setPassword(password)}
+        />
     }
 
     return (
     <main className="login-main container-fluid bg-dark text-center">
-        <div>
-            <h1>Login</h1>
-            <div>
-                <input className="form-control" type="text" onChange={(e) => setUserName(e.target.value)} placeholder="your.email@mail.com"/>
-            </div>
-            <div>
-                <input className="form-control" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
-            </div>
-            <button className="btn btn-primary" id="login" onClick={() => loginUser()} disabled={!userName || !password}>
-                Login
-            </button>
-            <button className="btn btn-secondary" id="create" onClick={() => createUser()} disabled={!userName || !password}>
-                Create Account
-            </button>
-        </div>
+        {auth()}
     </main>
   );
 }

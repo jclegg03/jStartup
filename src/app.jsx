@@ -12,6 +12,7 @@ export default function App() {
     const [goals, setGoals] = React.useState(localStorage.getItem('goals') || [])
     const [state, setState] = React.useState(0)
     const [notifications, setNotifications] = React.useState([])
+    const [authenticated, setAuth] = React.useState(false)
 
     return (
     <BrowserRouter>
@@ -19,17 +20,15 @@ export default function App() {
             <header className="container-fluid">
                 <nav className="navbar fixed-top navbar-dark">
                     <menu className="navbar-nav">
-                        {userName === 'Unidentified' && (
-                            <li className="nav-item">
-                                <NavLink className='nav-link' to=''>Login</NavLink>
-                            </li>
-                        )}
-                        {userName !== 'Unidentified' && (
+                        <li className="nav-item">
+                            <NavLink className='nav-link' to=''>Login</NavLink>
+                        </li>
+                        {authenticated && (
                             <li className="nav-item">
                                 <NavLink className='nav-link' to='goals'>Your Goals</NavLink>
                             </li>
                         )}
-                        {userName !== 'Unidentified' && (
+                        {authenticated && (
                             <li className="nav-item">
                                 <NavLink className='nav-link' to='friends'>Friends</NavLink>
                             </li>
@@ -51,6 +50,8 @@ export default function App() {
                         <Login
                             userName={userName}
                             onLogin={(userName) => setUserName(userName)}
+                            authenticated = {authenticated}
+                            setAuth = {(auth) => setAuth(auth)}
                         />
                     } 
                     exact
