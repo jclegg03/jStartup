@@ -1,6 +1,7 @@
 import React from 'react';
 import './login.css'
 import { Auth } from './auth'
+import { Deauth } from './deauth';
 
 export function Login(props) {
     const [userName, setUserName] = React.useState(props.userName)
@@ -19,9 +20,18 @@ export function Login(props) {
         props.onLogin(userName)
     }
 
+    async function logout()
+    {
+        localStorage.removeItem('userName')
+        props.setAuth(false)
+    }
+
     function auth()
     {
-        if(props.authenticated) return
+        if(props.authenticated) return <Deauth
+            userName = {userName}
+            logout = {() => logout()}
+        />
         return <Auth
             userName = {userName}
             password = {password}
