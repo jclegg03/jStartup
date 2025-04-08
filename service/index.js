@@ -8,6 +8,7 @@ const authCookieName = 'token';
 
 let users = [];
 let goals = [];
+let friends = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -81,6 +82,17 @@ apiRouter.post('/goal', verifyAuth, (req, res) => {
   goals.push(req.goal);
   res.send(goals);
 });
+
+// GetFriends
+apiRouter.get('/friends', verifyAuth, (_req, res) => {
+    res.send(friends);
+  });
+  
+  // SubmitGoal
+  apiRouter.post('/friend', verifyAuth, (req, res) => {
+    friends.push(req.friend);
+    res.send(friends);
+  });
 
 // Default error handler
 app.use(function (err, req, res, next) {
