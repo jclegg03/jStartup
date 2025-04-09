@@ -116,15 +116,47 @@ apiRouter.delete('/goal', verifyAuth, (req, res) => {
     res.send(validGoals(req.user));
 });
 
+//does the actual deleting of a friend
+function deleteFriend(body) {
+    for (let i = 0; i < friends.length; i++) {
+        let friend = friends[i];
+        let currentID = friend.id;
+        let user = friend.name;
+        if (currentID == body.id && (user == body.user|| body.user == friend.userName)) {
+            friends.splice(i, 1);
+            break;
+        }
+    }
+}
+
+//makes sure the response only contains friends for that person.
+function validFriends(user){
+    let friendList = [];
+
+    for (let i = 0; i < friends.length; i++) {
+        let friend = friends[i];
+        if(user.email == friend.name || user.email == friend.userName) {
+            friendList.push(friend);
+        }
+    }
+    return friendList;
+}
+
 // GetFriends
 apiRouter.get('/friends', verifyAuth, (_req, res) => {
-    res.send(friends);
+    res.send(validFriends(req.user));
 });
 
 // SubmitFriend
 apiRouter.post('/friend', verifyAuth, (req, res) => {
-    friends.push(req.friend);
-    res.send(friends);
+    friends.push(req.body);
+    res.send(validFriends(req.user));
+});
+
+// DeleteFriend
+apiRouter.delete('/friend', verifyAuth, (req, res) => {
+    deleteFriend(req.body);
+    res.send(validFriends(req.user));
 });
 
 // Default error handler
