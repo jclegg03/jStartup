@@ -87,17 +87,16 @@ function validGoals(user){
 }
 
 //does the actual deleting of a goal
-const deleteGoal = async (req, res, next) => {
-    for (let i = 0; i < goalList.length; i++) {
-        let goal = goalList[i];
+function deleteGoal(body) {
+    for (let i = 0; i < goals.length; i++) {
+        let goal = goals[i];
         let currentID = goal.id;
         let user = goal.name;
-        if (currentID == req.id && user == req.user) {
-            goalList.splice(i, 1);
+        if (currentID == body.id && user == body.user) {
+            goals.splice(i, 1);
             break;
         }
     }
-    next();
 }
 
 // GetGoals
@@ -107,13 +106,14 @@ apiRouter.get('/goals', verifyAuth, (req, res) => {
 
 // SubmitGoal
 apiRouter.post('/goal', verifyAuth, (req, res) => {
-    goals.push(req.body)
+    goals.push(req.body);
     res.send(validGoals(req.user));
 });
 
 // DeleteGoal
-apiRouter.delete('/goal', [verifyAuth, deleteGoal, validGoals], (req, res) => {
-    res.send(res.goals);
+apiRouter.delete('/goal', verifyAuth, (req, res) => {
+    deleteGoal(req.body);
+    res.send(validGoals(req.user));
 });
 
 // GetFriends

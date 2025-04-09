@@ -46,9 +46,10 @@ export function Goals(props) {
     async function deleteGoal(id) {
         fetch('/api/goal', {
             method: 'DELETE',
-            user: userName,
-            id: id
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ user: userName, id: id})
         })
+            .then((res) => res.json())
             .then((goalList) => updateGoals(goalList))
     }
 
