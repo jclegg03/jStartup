@@ -1,0 +1,6 @@
+FIX:
+- confirm people are friends in get friend goals method in index.js (currently peopple can be logged in and request anyone's goals.)
+
+TODO:
+- make enter key submit new goals and friends
+- clear out goal and friend field upon submitting.
