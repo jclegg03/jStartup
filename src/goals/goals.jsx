@@ -9,17 +9,19 @@ export function Goals(props) {
     const [goalType, setGoalType] = React.useState('Daily')
 
     React.useEffect(() => {
-        let goals = []
         try {
-            goals = JSON.parse(props.goals)
-            updateGoals(goals)
+            fetch('/api/goals', {
+                method: 'GET'
+            })
+                .then((res) => res.json())
+                .then((goalList) => updateGoals(goalList))
         }
         catch (error) {
 
         }
     }, [])
 
-    function saveGoal() {
+    async function saveGoal() {
         const day = 1000 * 60 * 60 * 24
         let date = new Date()
         if (goalType == "Daily") {
@@ -30,45 +32,40 @@ export function Goals(props) {
         }
         date = new Date(date)
         const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId() }
-
-        updateGoalsLocal(newGoal)
+        
+        const res = await fetch('/api/goal', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newGoal),
+        })
+        const goals = await res.json()
+        updateGoals(goals)
+        // updateGoalsLocal(newGoal)
     }
 
-    function deleteGoal(id) {
-        // goalList is used only to update the local storage.
-        let goalList = []
-        const goalsText = localStorage.getItem('goals')
-        if (goalsText) {
-            goalList = JSON.parse(goalsText)
-        }
-
-        for (let i = 0; i < goalList.length; i++) {
-            let goal = goalList[i]
-            let currentID = goal.id
-            if (currentID == id) {
-                goalList.splice(i, 1)
-                break
-            }
-        }
-
-        localStorage.setItem('goals', JSON.stringify(goalList))
-        updateGoals(goalList)
+    async function deleteGoal(id) {
+        fetch('/api/goal', {
+            method: 'DELETE',
+            user: userName,
+            id: id
+        })
+            .then((goalList) => updateGoals(goalList))
     }
 
     //Updates the stored goal data with the new goal.
-    function updateGoalsLocal(newGoal) {
-        // goalList is used only to update the local storage.
-        let goalList = []
-        const goalsText = localStorage.getItem('goals')
-        if (goalsText) {
-            goalList = JSON.parse(goalsText)
-        }
+    // function updateGoalsLocal(newGoal) {
+    //     // goalList is used only to update the local storage.
+    //     let goalList = []
+    //     const goalsText = localStorage.getItem('goals')
+    //     if (goalsText) {
+    //         goalList = JSON.parse(goalsText)
+    //     }
 
-        goalList.push(newGoal)
+    //     goalList.push(newGoal)
 
-        localStorage.setItem('goals', JSON.stringify(goalList))
-        updateGoals(goalList)
-    }
+    //     localStorage.setItem('goals', JSON.stringify(goalList))
+    //     updateGoals(goalList)
+    // }
 
     function updateGoals(goalList) {
         let goalElements = []
