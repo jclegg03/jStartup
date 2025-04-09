@@ -10,10 +10,6 @@ export function Friends(props) {
     const [friendName, setFriendName] = React.useState("")
 
     React.useEffect(() => {
-        // const friendList = localStorage.getItem('friends')
-        // if (friendList) {
-        //     updateFriends(JSON.parse(friendList))
-        // }
         fetch('/api/friends', {
             method: 'GET'
         })
@@ -24,8 +20,6 @@ export function Friends(props) {
     //used by the search friend section
     async function saveFriend() {
         const newFriend = { name: friendName, id: makeId(), userName: props.userName }
-        // updateFriendsLocal(newFriend)
-
         const res = await fetch('/api/friend', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
@@ -36,24 +30,6 @@ export function Friends(props) {
     }
 
     async function deleteFriend(id) {
-        // friendList is used only to update the local storage.
-        // let friendList = []
-        // const friendsText = localStorage.getItem('friends')
-        // if (friendsText) {
-        //     friendList = JSON.parse(friendsText)
-        // }
-
-        // for (let i = 0; i < friendList.length; i++) {
-        //     let friend = friendList[i]
-        //     let currentID = friend.id
-        //     if (currentID == id) {
-        //         friendList.splice(i, 1)
-        //         break
-        //     }
-        // }
-
-        // localStorage.setItem('friends', JSON.stringify(friendList))
-        // updateFriends(friendList)
         fetch('/api/friend', {
             method: 'DELETE',
             headers: { 'content-type': 'application/json' },
@@ -85,7 +61,6 @@ export function Friends(props) {
             let user1 = friend.name
             let user2 = friend.userName
             let name = (user1 === props.userName) ? user2 : user1
-            console.log(name)
             friendElements.push(
                 <Friend
                     name={name}
