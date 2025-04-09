@@ -40,7 +40,6 @@ export function Goals(props) {
         })
         const goals = await res.json()
         updateGoals(goals)
-        // updateGoalsLocal(newGoal)
     }
 
     async function deleteGoal(id) {
@@ -52,21 +51,6 @@ export function Goals(props) {
             .then((res) => res.json())
             .then((goalList) => updateGoals(goalList))
     }
-
-    //Updates the stored goal data with the new goal.
-    // function updateGoalsLocal(newGoal) {
-    //     // goalList is used only to update the local storage.
-    //     let goalList = []
-    //     const goalsText = localStorage.getItem('goals')
-    //     if (goalsText) {
-    //         goalList = JSON.parse(goalsText)
-    //     }
-
-    //     goalList.push(newGoal)
-
-    //     localStorage.setItem('goals', JSON.stringify(goalList))
-    //     updateGoals(goalList)
-    // }
 
     function updateGoals(goalList) {
         let goalElements = []
