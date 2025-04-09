@@ -82,9 +82,13 @@ export function Friends(props) {
         let friendElements = []
         for (let i = 0; i < friendList.length; i++) {
             let friend = friendList[i]
+            let user1 = friend.name
+            let user2 = friend.userName
+            let name = (user1 === props.userName) ? user2 : user1
+            console.log(name)
             friendElements.push(
                 <Friend
-                    name={friend.name}
+                    name={name}
                     id={friend.id}
                     delete={(id) => deleteFriend(id)}
                     key={friend.id}
