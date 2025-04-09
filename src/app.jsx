@@ -71,6 +71,7 @@ export default function App() {
                     {<Friends
                         notifications={notifications}
                         setNotifications={(notifications) => setNotifications(notifications)}
+                        userName={userName}
                     />} />
                 {/* <Route path='/achievements' element={<Achievements />} /> */}
                 <Route path='*' element={<NotFound />} />
