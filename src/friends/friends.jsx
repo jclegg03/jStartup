@@ -22,14 +22,10 @@ export function Friends(props) {
     //         id={makeId()}
     //         delete={(id) => deleteFriendRequest(id)}
     //     />]
-    // let requestsSet = false
 
     // React.useEffect(() => {
     //     try {
-    //         if (!requestsSet) {
-    //             setFriendRequests(requests)
-    //             requestsSet = true
-    //         }
+    //         setFriendRequests(requests)
     //     }
     //     catch (error) {
 
@@ -38,7 +34,7 @@ export function Friends(props) {
 
     //used by the search friend section
     function saveFriend() {
-        const newFriend = { name: friendName, id: makeId() }
+        const newFriend = { name: friendName, id: makeId(), userName: props.userName }
         updateFriendsLocal(newFriend)
     }
 
@@ -50,9 +46,11 @@ export function Friends(props) {
     // }
 
     // function deleteFriendRequest(id) {
+    //     console.log(id)
     //     for (let i = 0; i < requests.length; i++) {
     //         let request = requests[i]
     //         let currentID = request.props.id
+    //         console.log(currentID)
     //         if (currentID == id) {
     //             requests.splice(i, 1)
     //             break
@@ -60,6 +58,8 @@ export function Friends(props) {
     //     }
 
     //     setFriendRequests(requests)
+    //     console.log(requests)
+    //     console.log(friendRequests)
     // }
 
     React.useEffect(() => {
