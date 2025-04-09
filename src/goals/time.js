@@ -109,13 +109,12 @@ function resetStreak(goal) {
     }
 }
 
-export function resetTimer(goal, update) {
+export async function resetTimer(goal, update) {
     let id = goal.id
     let goalList = []
-    const goalsText = localStorage.getItem('goals')
-    if (goalsText) {
-        goalList = JSON.parse(goalsText)
-    }
+    await fetch('/api/goals', {
+        method: 'GET'
+    }).then((res) => res.json()).then((list) => {goalList = list})
 
     for (let i = 0; i < goalList.length; i++) {
         const currentGoal = goalList[i]
@@ -125,11 +124,21 @@ export function resetTimer(goal, update) {
                 name: currentGoal.name, goalText: currentGoal.goalText, goalType: currentGoal.goalType,
                 streak: currentGoal.streak + 1, date: new Date(), id: currentID
             }
+
+            await fetch('/api/goal', {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ user: currentGoal.name, id: id})
+            })
+            await fetch('/api/goal', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(newGoal),
+            })
             goalList[i] = newGoal
             break
         }
     }
 
-    localStorage.setItem('goals', JSON.stringify(goalList))
     update(goalList)
 }
