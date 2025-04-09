@@ -100,12 +100,6 @@ const deleteGoal = async (req, res, next) => {
     next();
 }
 
-//does the actual adding of a goal
-const addGoal = async(req, res, next) => {
-    goals.push(req.body);
-    next();
-}
-
 // GetGoals
 apiRouter.get('/goals', verifyAuth, (req, res) => {
     res.send(validGoals(req.user));
