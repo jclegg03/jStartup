@@ -122,7 +122,7 @@ export function resetTimer(goal, update) {
         const currentID = currentGoal.id
         if (currentID == id) {
             const newGoal = {
-                name: currentGoal.userName, goalText: currentGoal.goalText, goalType: currentGoal.goalType,
+                name: currentGoal.name, goalText: currentGoal.goalText, goalType: currentGoal.goalType,
                 streak: currentGoal.streak + 1, date: new Date(), id: currentID
             }
             goalList[i] = newGoal
