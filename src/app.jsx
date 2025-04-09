@@ -12,7 +12,7 @@ export default function App() {
     const [goals, setGoals] = React.useState(localStorage.getItem('goals') || [])
     const [state, setState] = React.useState(0)
     const [notifications, setNotifications] = React.useState([])
-    const [authenticated, setAuth] = React.useState(false)
+    const [authenticated, setAuth] = React.useState(localStorage.getItem('userName') || false)
 
     return (
     <BrowserRouter>
