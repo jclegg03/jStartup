@@ -3,64 +3,17 @@ import './friends.css';
 import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
-// import { FriendRequest } from './friendRequest';
+import { FriendRequests } from './friendRequests'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
-    // const [friendRequests, setFriendRequests] = React.useState([])
-    // let requests =
-    //     [<FriendRequest
-    //         name='Fred'
-    //         add={(name, id) => saveFriend(name, id)}
-    //         id={makeId()}
-    //         delete={(id) => deleteFriendRequest(id)}
-    //     />,
-    //     <FriendRequest
-    //         name='Jeff'
-    //         add={(name, id) => saveFriend(name, id)}
-    //         id={makeId()}
-    //         delete={(id) => deleteFriendRequest(id)}
-    //     />]
-
-    // React.useEffect(() => {
-    //     try {
-    //         setFriendRequests(requests)
-    //     }
-    //     catch (error) {
-
-    //     }
-    // }, [])
 
     //used by the search friend section
     function saveFriend() {
         const newFriend = { name: friendName, id: makeId(), userName: props.userName }
         updateFriendsLocal(newFriend)
     }
-
-    //used by the friend requests
-    // function saveFriend(name, id) {
-    //     const newFriend = { name: name, id: makeId() }
-    //     updateFriendsLocal(newFriend)
-    //     deleteFriendRequest(id)
-    // }
-
-    // function deleteFriendRequest(id) {
-    //     console.log(id)
-    //     for (let i = 0; i < requests.length; i++) {
-    //         let request = requests[i]
-    //         let currentID = request.props.id
-    //         console.log(currentID)
-    //         if (currentID == id) {
-    //             requests.splice(i, 1)
-    //             break
-    //         }
-    //     }
-
-    //     setFriendRequests(requests)
-    //     console.log(requests)
-    //     console.log(friendRequests)
-    // }
 
     React.useEffect(() => {
         const friendList = localStorage.getItem('friends')
@@ -168,10 +121,9 @@ export function Friends(props) {
                         <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username" />
                     </div>
                 </div>
-                {/* <div className="section">
-                    <h3>Friend Requests</h3>
-                    {friendRequests}
-                </div> */}
+                <FriendRequests
+                    updateFriendsLocal={(newFriend) => updateFriendsLocal(newFriend)}
+                />
             </div>
             <Notifications
                 notifications={props.notifications}
