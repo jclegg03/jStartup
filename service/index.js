@@ -8,6 +8,7 @@ const authCookieName = 'token';
 
 let users = [];
 let goals = [];
+let friendRequests = [];
 let friends = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
@@ -143,7 +144,7 @@ function validFriends(user){
 }
 
 // GetFriends
-apiRouter.get('/friends', verifyAuth, (_req, res) => {
+apiRouter.get('/friends', verifyAuth, (req, res) => {
     res.send(validFriends(req.user));
 });
 
