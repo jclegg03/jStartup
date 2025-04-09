@@ -143,6 +143,25 @@ function validFriends(user) {
     return friendList;
 }
 
+function getFriendGoals(user, friendName)
+{
+    const email = user.email;
+    let goalList = [];
+
+    for (let i = 0; i < goals.length; i++) {
+        let goal = goals[i];
+        if (friendName == goal.name) {
+            goalList.push(goal);
+        }
+    }
+    return goalList;
+}
+
+// GetFriendsGoals
+apiRouter.get('/friend/goals', verifyAuth, (req, res) => {
+    res.send(getFriendGoals(req.user, req.query.friend));
+});
+
 // GetFriends
 apiRouter.get('/friends', verifyAuth, (req, res) => {
     res.send(validFriends(req.user));

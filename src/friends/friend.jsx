@@ -1,6 +1,14 @@
 import React from "react";
 
 export function Friend(props) {
+    React.useEffect(() => {
+        fetch('/api/friend/goals?friend=' + props.name, {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((goalList) => console.log(goalList))
+    }, [])
+
     return (
         <div id={props.id} className="friend">
             <span className='add-right-margin'>{props.name}</span>
