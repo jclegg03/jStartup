@@ -75,12 +75,12 @@ const verifyAuth = async (req, res, next) => {
 };
 
 //makes sure the response only contains goals for that person.
-function validGoals(user){
+function validGoals(user) {
     let goalList = [];
 
     for (let i = 0; i < goals.length; i++) {
         let goal = goals[i];
-        if(user.email == goal.name) {
+        if (user.email == goal.name) {
             goalList.push(goal);
         }
     }
@@ -123,7 +123,7 @@ function deleteFriend(body) {
         let friend = friends[i];
         let currentID = friend.id;
         let user = friend.name;
-        if (currentID == body.id && (user == body.user|| body.user == friend.userName)) {
+        if (currentID == body.id && (user == body.user || body.user == friend.userName)) {
             friends.splice(i, 1);
             break;
         }
@@ -131,12 +131,12 @@ function deleteFriend(body) {
 }
 
 //makes sure the response only contains friends for that person.
-function validFriends(user){
+function validFriends(user) {
     let friendList = [];
 
     for (let i = 0; i < friends.length; i++) {
         let friend = friends[i];
-        if(user.email == friend.name || user.email == friend.userName) {
+        if (user.email == friend.name || user.email == friend.userName) {
             friendList.push(friend);
         }
     }

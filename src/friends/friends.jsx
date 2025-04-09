@@ -9,38 +9,58 @@ export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
 
-    //used by the search friend section
-    function saveFriend() {
-        const newFriend = { name: friendName, id: makeId(), userName: props.userName }
-        updateFriendsLocal(newFriend)
-    }
-
     React.useEffect(() => {
-        const friendList = localStorage.getItem('friends')
-        if (friendList) {
-            updateFriends(JSON.parse(friendList))
-        }
+        // const friendList = localStorage.getItem('friends')
+        // if (friendList) {
+        //     updateFriends(JSON.parse(friendList))
+        // }
+        fetch('/api/friends', {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((list) => updateFriends(list))
     }, [])
 
-    function deleteFriend(id) {
+    //used by the search friend section
+    async function saveFriend() {
+        const newFriend = { name: friendName, id: makeId(), userName: props.userName }
+        // updateFriendsLocal(newFriend)
+
+        const res = await fetch('/api/friend', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newFriend),
+        })
+        const friends = await res.json()
+        updateFriends(friends)
+    }
+
+    async function deleteFriend(id) {
         // friendList is used only to update the local storage.
-        let friendList = []
-        const friendsText = localStorage.getItem('friends')
-        if (friendsText) {
-            friendList = JSON.parse(friendsText)
-        }
+        // let friendList = []
+        // const friendsText = localStorage.getItem('friends')
+        // if (friendsText) {
+        //     friendList = JSON.parse(friendsText)
+        // }
 
-        for (let i = 0; i < friendList.length; i++) {
-            let friend = friendList[i]
-            let currentID = friend.id
-            if (currentID == id) {
-                friendList.splice(i, 1)
-                break
-            }
-        }
+        // for (let i = 0; i < friendList.length; i++) {
+        //     let friend = friendList[i]
+        //     let currentID = friend.id
+        //     if (currentID == id) {
+        //         friendList.splice(i, 1)
+        //         break
+        //     }
+        // }
 
-        localStorage.setItem('friends', JSON.stringify(friendList))
-        updateFriends(friendList)
+        // localStorage.setItem('friends', JSON.stringify(friendList))
+        // updateFriends(friendList)
+        fetch('/api/friend', {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ user: props.userName, id: id})
+        })
+            .then((res) => res.json())
+            .then((list) => updateFriends(list))
     }
 
     //Updates the stored friend data with the new friend.
