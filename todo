@@ -1,5 +1,6 @@
 FIX:
 - confirm people are friends in get friend goals method in index.js (currently peopple can be logged in and request anyone's goals.)
+- Some quotes may still show up with the &#8230; form.
 
 FORMAT:
 - super long goals cause the remove friend button to go to the right of the friend box.

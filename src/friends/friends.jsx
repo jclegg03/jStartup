@@ -8,6 +8,8 @@ import { FriendRequests } from './friendRequests'
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
+    const [quote, setQuote] = React.useState("")
+    const [source, setSource] = React.useState("")
 
     React.useEffect(() => {
         fetch('/api/friends', {
@@ -15,6 +17,16 @@ export function Friends(props) {
         })
             .then((res) => res.json())
             .then((list) => updateFriends(list))
+
+        fetch("https://quotesondesign.com/wp-json/custom/v1/random-post?_=" + new Date().getTime())
+            .then((res) => res.json())
+            .then((data) => {
+                setQuote(data.content.replace(/<[^>]*>/g, "")
+                .replace(/&#821[67];/g, "'").replace(/&#822[01];/g, '"').replace(/&#8211;/g, "–")
+                .replace(/&#8230;/g, "…")
+            )
+                setSource(data.title)
+            })
     }, [])
 
     //used by the search friend section
@@ -79,6 +91,14 @@ export function Friends(props) {
                 notifications={props.notifications}
                 setNotifications={(notifications) => props.setNotifications(notifications)}
             />
+            <div className='section'>
+                <p>{quote}</p>
+                <p>- {source}</p>
+                <p>
+                    {"Quotes provided by "}
+                    <a href='https://quotesondesign.com'>quotesondesign.com</a>
+                </p>
+            </div>
         </main>
     );
 }
