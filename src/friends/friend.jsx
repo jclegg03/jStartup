@@ -3,6 +3,7 @@ import { FriendGoal } from "./friendGoal";
 
 export function Friend(props) {
     const [goals, setGoals] = React.useState([])
+    const [numGoals, setNumGoals] = React.useState("")
     React.useEffect(() => {
         fetch('/api/friend/goals?friend=' + props.name, {
             method: 'GET'
@@ -33,13 +34,15 @@ export function Friend(props) {
         }
 
         setGoals(goalElements)
+        if(goalElements.length == 1) setNumGoals("(1 goal)")
+        else setNumGoals("(" + goalElements.length + " goals)")
     }
 
     return (
         <div id={props.id} className="friend">
             <span className='add-right-margin'>{props.name}</span>
-            <span className='add-right-margin'>1 goal</span>
-            <span className='add-right-margin'>(going strong!)</span>
+            <span className='add-right-margin'>{numGoals}</span>
+            {/* <span className='add-right-margin'>(going strong!)</span> */}
             {/* <span><button className="btn btn-primary">▼</button></span> */}
             {goals}
             <div className='remove-button'>
