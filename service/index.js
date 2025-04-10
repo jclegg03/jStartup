@@ -179,6 +179,50 @@ apiRouter.delete('/friend', verifyAuth, (req, res) => {
     res.send(validFriends(req.user));
 });
 
+// Gets the list of requests for that user
+function getRequests(user)
+{
+    const email = user.email;
+    let requests = [];
+
+    for (let i = 0; i < friendRequests.length; i++) {
+        let request = friendRequests[i];
+        if (email == request.name) {
+            requests.push(request);
+        }
+    }
+    return requests;
+}
+
+//does the actual deleting of a friend request
+function deleteRequest(body) {
+    for (let i = 0; i < friendRequests.length; i++) {
+        let request = friendRequests[i];
+        let currentID = request.id;
+        let user = request.userName;
+        if (currentID == body.id && (user == body.user || body.user == request.name)) {
+            friendRequests.splice(i, 1);
+            break;
+        }
+    }
+}
+
+// GetFriendRequests
+apiRouter.get('/request', verifyAuth, (req, res) => {
+    res.send(getRequests(req.user));
+});
+
+// SubmitFriendRequest
+apiRouter.post('/request', verifyAuth, (req, res) => {
+    friendRequests.push(req.body);
+});
+
+// DeleteFriendRequest
+apiRouter.delete('/request', verifyAuth, (req, res) => {
+    deleteRequest(req.body);
+    res.send(getRequests(req.user));
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });

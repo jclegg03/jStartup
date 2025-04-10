@@ -4,24 +4,13 @@ import { makeId } from '../goals/id'
 
 export function FriendRequests(props) {
     const [friendRequests, setFriendRequests] = React.useState([])
-    
-    let requests =
-        [<FriendRequest
-            name='Fred'
-            add={(name, id) => saveFriend(name, id)}
-            id={makeId()}
-            delete={(id) => deleteFriendRequest(id)}
-        />,
-        <FriendRequest
-            name='Jeff'
-            add={(name, id) => saveFriend(name, id)}
-            id={makeId()}
-            delete={(id) => deleteFriendRequest(id)}
-        />]
-
     React.useEffect(() => {
         try {
-            setFriendRequests(requests)
+            fetch('/api/request', {
+                method: 'GET'
+            })
+                .then((res) => res.json())
+            .then((list) => updateRequests(list))
         }
         catch (error) {
 
@@ -29,27 +18,44 @@ export function FriendRequests(props) {
     }, [])
 
     //used by the friend requests
-    function saveFriend(name, id) {
-        const newFriend = { name: name, id: makeId() }
-        props.updateFriendsLocal(newFriend)
+    async function saveFriend(name, id) {
+        const newFriend = { name: name, id: makeId(), userName: props.userName }
+        const res = await fetch('/api/friend', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newFriend),
+        })
+        const friends = await res.json()
+        props.updateFriends(friends)
         deleteFriendRequest(id)
     }
 
     function deleteFriendRequest(id) {
-        console.log(id)
-        for (let i = 0; i < requests.length; i++) {
-            let request = requests[i]
-            let currentID = request.props.id
-            console.log(currentID)
-            if (currentID == id) {
-                requests.splice(i, 1)
-                break
-            }
+        fetch('/api/request', {
+            method: 'DELETE',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ user: props.userName, id: id})
+        })
+            .then((res) => res.json())
+            .then((list) => updateRequests(list))
+    }
+
+    function updateRequests(list) {
+        let requestElements = []
+        for (let i = 0; i < list.length; i++) {
+            let request = list[i]
+            requestElements.push(
+                <FriendRequest
+                    key={request.id}
+                    add={(name, id) => saveFriend(name, id)}
+                    name={request.userName}
+                    delete={(id) => deleteFriendRequest(id)}
+                    id={request.id}
+                />
+            )
         }
 
-        setFriendRequests(requests)
-        console.log(requests)
-        console.log(friendRequests)
+        setFriendRequests(requestElements)
     }
 
     return (

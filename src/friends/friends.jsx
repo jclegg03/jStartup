@@ -18,15 +18,13 @@ export function Friends(props) {
     }, [])
 
     //used by the search friend section
-    async function saveFriend() {
-        const newFriend = { name: friendName, id: makeId(), userName: props.userName }
-        const res = await fetch('/api/friend', {
+    async function makeRequest() {
+        const request = { name: friendName, id: makeId(), userName: props.userName }
+        await fetch('/api/request', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(newFriend),
+            body: JSON.stringify(request),
         })
-        const friends = await res.json()
-        updateFriends(friends)
     }
 
     async function deleteFriend(id) {
@@ -68,12 +66,13 @@ export function Friends(props) {
                 <div className="section">
                     <h2>Add friends</h2>
                     <div id="add">
-                        <button className="btn btn-primary" disabled={!friendName} onClick={() => saveFriend()}>➕</button>
+                        <button className="btn btn-primary" disabled={!friendName} onClick={() => makeRequest()}>➕</button>
                         <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username" />
                     </div>
                 </div>
                 <FriendRequests
-                    updateFriendsLocal={(newFriend) => updateFriendsLocal(newFriend)}
+                    updateFriends={(list) => updateFriends(list)}
+                    userName={props.userName}
                 />
             </div>
             <Notifications
