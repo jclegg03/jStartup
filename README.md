@@ -103,7 +103,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **Node.js/Express HTTP service** - Express installed!
 - [x] **Static middleware for frontend** - Check auth, making sure only the right goals are served up, etc.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
+- [x] **Calls to third party endpoints** - From the friends page I call a quote service.
 - [x] **Backend service endpoints** - Check auth, delete goals, add goals, etc.
 - [x] **Frontend calls service endpoints** - The frontend now uses the backend services!
 
