@@ -39,21 +39,6 @@ export function Friends(props) {
             .then((list) => updateFriends(list))
     }
 
-    //Updates the stored friend data with the new friend.
-    function updateFriendsLocal(newFriend) {
-        // friendList is used only to update the local storage.
-        let friendList = []
-        const friendText = localStorage.getItem('friends')
-        if (friendText) {
-            friendList = JSON.parse(friendText)
-        }
-
-        friendList.push(newFriend)
-
-        localStorage.setItem('friends', JSON.stringify(friendList))
-        updateFriends(friendList)
-    }
-
     function updateFriends(friendList) {
         let friendElements = []
         for (let i = 0; i < friendList.length; i++) {
