@@ -55,7 +55,8 @@ export function FriendRequests(props) {
             )
         }
 
-        setFriendRequests(requestElements)
+        if(requestElements.length > 0) setFriendRequests(requestElements)
+        else setFriendRequests("No friend requests … yet.")
     }
 
     return (

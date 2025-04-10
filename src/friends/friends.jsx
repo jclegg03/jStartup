@@ -65,7 +65,8 @@ export function Friends(props) {
                 />
             )
         }
-        setFriends(friendElements)
+        if(friendElements.length > 0) setFriends(friendElements)
+        else setFriends("Send/Accept friend requests to see your friends goals!")
     }
 
     return (
@@ -76,7 +77,7 @@ export function Friends(props) {
             </div>
             <div className="section">
                 <div className="section">
-                    <h2>Add friends</h2>
+                    <h2>Send Friend Requests</h2>
                     <div id="add">
                         <button className="btn btn-primary" disabled={!friendName} onClick={() => makeRequest()}>➕</button>
                         <input className="form-control" onChange={(e) => setFriendName(e.target.value)} type="text" placeholder="Enter Friend's username" />
@@ -87,10 +88,10 @@ export function Friends(props) {
                     userName={props.userName}
                 />
             </div>
-            <Notifications
+            {/* <Notifications
                 notifications={props.notifications}
                 setNotifications={(notifications) => props.setNotifications(notifications)}
-            />
+            /> */}
             <div className='section'>
                 <p>{quote}</p>
                 <p>- {source}</p>
