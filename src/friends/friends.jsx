@@ -77,39 +77,6 @@ export function Friends(props) {
         <main className="friends-main container-fluid bg-dark text-center">
             <h1>Friends</h1>
             <div className="section">
-                <div className="friend">
-                    <span className='add-right-margin'>Sally</span>
-                    <span className='add-right-margin'>3 goals</span>
-                    <span className='add-right-margin'>(going strong!)</span>
-                    {/* <span><button className="btn btn-primary">▼</button></span> */}
-                    <p className="friend-goal">
-                        <span className='friend-goal-text'>Run daily</span>
-                        <span className="streak">(2 day streak!)</span>
-                    </p>
-                    <p className="friend-goal">
-                        <span className='friend-goal-text'>Bike weekly</span>
-                        <span className="streak">(1 week streak!)</span>
-                    </p>
-                    <p className="friend-goal">
-                        <span className='friend-goal-text'>Consume no added sugars</span>
-                        <span className="streak">(1 day streak!)</span>
-                    </p>
-                </div>
-                <div className="friend">
-                    <span className='add-right-margin'>Bob</span>
-                    <span className='add-right-margin'>2 goals</span>
-                    <span className='add-right-margin'>(needs encouragement)</span>
-                    {/* <span><button className="btn btn-primary">▼</button></span> */}
-                    <p className="friend-goal">
-                        <span className='friend-goal-text'>Meet someone new daily</span>
-                        <span className="streak">(732 day streak!)</span>
-                    </p>
-                    <p className="friend-goal">
-                        <span className='friend-goal-text'>Make home cooked meal daily</span>
-                        <span className="streak">(3 hours remaining)</span>
-                        <span className="encourage"><button className="btn btn-primary">Encourage</button></span>
-                    </p>
-                </div>
                 {friends}
             </div>
             <div className="section">
