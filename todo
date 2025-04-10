@@ -1,6 +1,10 @@
 FIX:
 - confirm people are friends in get friend goals method in index.js (currently peopple can be logged in and request anyone's goals.)
 
+FORMAT:
+- super long goals cause the remove friend button to go to the right of the friend box.
+- delete button on the goal screen can also be placed to high due to this.
+
 TODO:
 - make enter key submit new goals and friends
 - clear out goal and friend field upon submitting.
