@@ -3,6 +3,7 @@ FIX:
 - Some quotes may still show up with the &#8230; form.
 - confirm a friend request is being sent only to real users.
 - make sure you aren't adding yourself as friend.
+- make sure friend request isn't a duplicate of existing friend request.
 
 FORMAT:
 - super long goals cause the remove friend button to go to the right of the friend box.
@@ -11,3 +12,4 @@ FORMAT:
 TODO:
 - make enter key submit new goals and friends
 - clear out goal and friend field upon submitting.
+- make default error handler notify user of error
