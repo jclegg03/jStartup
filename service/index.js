@@ -7,9 +7,9 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-let goals = [];
+// let goals = [];
 let friendRequests = [];
-let friends = [];
+// let friends = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
@@ -169,6 +169,7 @@ function getFriendGoals(user, friendName) {
     }
 
     if(isFriends) return DB.getGoals(friendName);
+    else return []
 }
 
 // GetFriendsGoals
@@ -183,7 +184,8 @@ apiRouter.get('/friends', verifyAuth, (req, res) => {
 
 // SubmitFriend
 apiRouter.post('/friend', verifyAuth, (req, res) => {
-    friends.push(req.body);
+    // friends.push(req.body);
+    DB.addFriend(req.body)
     res.send(validFriends(req.user));
 });
 
