@@ -25,6 +25,10 @@ async function updateUser(user) {
     await userCollection.updateOne({ email: user.email }, { $set: user });
 }
 
+function getGoals(user) {
+    return goalCollection.find({ name: user}).toArray()
+}
+
 async function addGoal(goal) {
     await goalCollection.insertOne(goal)
 }
@@ -34,7 +38,7 @@ async function updateGoal(goal) {
 }
 
 async function deleteGoal(goal) {
-    await goalCollection.deleteOne({ name: goal.name, id: goal.id })
+    await goalCollection.deleteOne({ name: goal.user, id: goal.id })
 }
 
 async function addRequest(request) {
@@ -56,6 +60,7 @@ async function deleteFriend(friend) {
 module.exports = {
     getUser,
     getUserByToken,
+    getGoals,
     addUser,
     updateUser,
     addGoal,

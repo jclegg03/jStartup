@@ -45,6 +45,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             user.token = uuid.v4();
+            await DB.updateUser(user);
             setAuthCookie(res, user.token);
             res.send({ email: user.email });
             return;
@@ -58,6 +59,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
         delete user.token;
+        DB.updateUser(user);
     }
     res.clearCookie(authCookieName);
     res.status(204).end();
@@ -76,28 +78,29 @@ const verifyAuth = async (req, res, next) => {
 
 //makes sure the response only contains goals for that person.
 function validGoals(user) {
-    let goalList = [];
+    // let goalList = [];
 
-    for (let i = 0; i < goals.length; i++) {
-        let goal = goals[i];
-        if (user.email == goal.name) {
-            goalList.push(goal);
-        }
-    }
-    return goalList;
+    // for (let i = 0; i < goals.length; i++) {
+    //     let goal = goals[i];
+    //     if (user.email == goal.name) {
+    //         goalList.push(goal);
+    //     }
+    // }
+    return DB.getGoals(user.email);
 }
 
 //does the actual deleting of a goal
 function deleteGoal(body) {
-    for (let i = 0; i < goals.length; i++) {
-        let goal = goals[i];
-        let currentID = goal.id;
-        let user = goal.name;
-        if (currentID == body.id && user == body.user) {
-            goals.splice(i, 1);
-            break;
-        }
-    }
+    // for (let i = 0; i < goals.length; i++) {
+    //     let goal = goals[i];
+    //     let currentID = goal.id;
+    //     let user = goal.name;
+    //     if (currentID == body.id && user == body.user) {
+    //         goals.splice(i, 1);
+    //         break;
+    //     }
+    // }
+    DB.deleteGoal(body)
 }
 
 // GetGoals
@@ -107,7 +110,8 @@ apiRouter.get('/goals', verifyAuth, (req, res) => {
 
 // SubmitGoal
 apiRouter.post('/goal', verifyAuth, (req, res) => {
-    goals.push(req.body);
+    // goals.push(req.body);
+    DB.addGoal(req.body)
     res.send(validGoals(req.user));
 });
 
