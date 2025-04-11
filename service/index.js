@@ -7,7 +7,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-let users = [];
 let goals = [];
 let friendRequests = [];
 let friends = [];
@@ -144,8 +143,7 @@ function validFriends(user) {
     return friendList;
 }
 
-function getFriendGoals(user, friendName)
-{
+function getFriendGoals(user, friendName) {
     const email = user.email;
     let goalList = [];
 
@@ -181,8 +179,7 @@ apiRouter.delete('/friend', verifyAuth, (req, res) => {
 });
 
 // Gets the list of requests for that user
-function getRequests(user)
-{
+function getRequests(user) {
     const email = user.email;
     let requests = [];
 
@@ -242,7 +239,7 @@ async function createUser(email, password) {
         password: passwordHash,
         token: uuid.v4(),
     };
-    users.push(user);
+    await DB.addUser(user)
 
     return user;
 }
@@ -250,7 +247,10 @@ async function createUser(email, password) {
 async function findUser(field, value) {
     if (!value) return null;
 
-    return users.find((u) => u[field] === value);
+    if (field === 'token') {
+        return DB.getUserByToken(value);
+    }
+    return DB.getUser(value);
 }
 
 // setAuthCookie in the HTTP response
