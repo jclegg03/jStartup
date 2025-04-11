@@ -8,7 +8,7 @@ const DB = require('./database.js');
 const authCookieName = 'token';
 
 // let goals = [];
-let friendRequests = [];
+// let friendRequests = [];
 // let friends = [];
 
 // The service port. In production the front-end code is statically hosted by the service on the same port.
@@ -77,48 +77,34 @@ const verifyAuth = async (req, res, next) => {
 };
 
 //makes sure the response only contains goals for that person.
-function validGoals(user) {
-    // let goalList = [];
-
-    // for (let i = 0; i < goals.length; i++) {
-    //     let goal = goals[i];
-    //     if (user.email == goal.name) {
-    //         goalList.push(goal);
-    //     }
-    // }
-    return DB.getGoals(user.email);
+async function validGoals(user) {
+    let goals = await DB.getGoals(user.email)
+    return goals
 }
 
 //does the actual deleting of a goal
 function deleteGoal(body) {
-    // for (let i = 0; i < goals.length; i++) {
-    //     let goal = goals[i];
-    //     let currentID = goal.id;
-    //     let user = goal.name;
-    //     if (currentID == body.id && user == body.user) {
-    //         goals.splice(i, 1);
-    //         break;
-    //     }
-    // }
     DB.deleteGoal(body)
 }
 
 // GetGoals
 apiRouter.get('/goals', verifyAuth, (req, res) => {
-    res.send(validGoals(req.user));
+    validGoals(req.user)
+        .then(goals => res.send(goals))
 });
 
 // SubmitGoal
 apiRouter.post('/goal', verifyAuth, (req, res) => {
-    // goals.push(req.body);
     DB.addGoal(req.body)
-    res.send(validGoals(req.user));
+    validGoals(req.user)
+        .then((goals) => res.send(goals))
 });
 
 // DeleteGoal
 apiRouter.delete('/goal', verifyAuth, (req, res) => {
     deleteGoal(req.body);
-    res.send(validGoals(req.user));
+    validGoals(req.user)
+        .then(goals => res.send(goals))
 });
 
 //does the actual deleting of a friend

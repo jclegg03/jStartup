@@ -32,21 +32,21 @@ export function Goals(props) {
         }
         date = new Date(date)
         const newGoal = { name: userName, goalText: goalText, goalType: goalType, streak: 0, date: date, id: makeId() }
-        
-        const res = await fetch('/api/goal', {
+
+        fetch('/api/goal', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newGoal),
         })
-        const goals = await res.json()
-        updateGoals(goals)
+            .then((res) => res.json())
+            .then((goals) => updateGoals(goals))
     }
 
     async function deleteGoal(id) {
         fetch('/api/goal', {
             method: 'DELETE',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ user: userName, id: id})
+            body: JSON.stringify({ user: userName, id: id })
         })
             .then((res) => res.json())
             .then((goalList) => updateGoals(goalList))
