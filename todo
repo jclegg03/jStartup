@@ -4,6 +4,7 @@ FIX:
 - confirm a friend request is being sent only to real users.
 - make sure you aren't adding yourself as friend.
 - make sure friend request isn't a duplicate of existing friend request.
+- change friend object structure to say user1, user2 for better readability.
 
 FORMAT:
 - super long goals cause the remove friend button to go to the right of the friend box.
