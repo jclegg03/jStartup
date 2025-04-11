@@ -41,6 +41,10 @@ async function deleteGoal(goal) {
     await goalCollection.deleteOne({ name: goal.user, id: goal.id })
 }
 
+function getRequests(user) {
+    return requestCollection.find({ name: user}).toArray()
+}
+
 async function addRequest(request) {
     await requestCollection.insertOne(request)
 }

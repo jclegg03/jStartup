@@ -198,28 +198,29 @@ apiRouter.delete('/friend', verifyAuth, (req, res) => {
 // Gets the list of requests for that user
 function getRequests(user) {
     const email = user.email;
-    let requests = [];
+    // let requests = [];
 
-    for (let i = 0; i < friendRequests.length; i++) {
-        let request = friendRequests[i];
-        if (email == request.name) {
-            requests.push(request);
-        }
-    }
-    return requests;
+    // for (let i = 0; i < friendRequests.length; i++) {
+    //     let request = friendRequests[i];
+    //     if (email == request.name) {
+    //         requests.push(request);
+    //     }
+    // }
+    return DB.getRequests(email);
 }
 
 //does the actual deleting of a friend request
 function deleteRequest(body) {
-    for (let i = 0; i < friendRequests.length; i++) {
-        let request = friendRequests[i];
-        let currentID = request.id;
-        let user = request.userName;
-        if (currentID == body.id && (user == body.user || body.user == request.name)) {
-            friendRequests.splice(i, 1);
-            break;
-        }
-    }
+    // for (let i = 0; i < friendRequests.length; i++) {
+    //     let request = friendRequests[i];
+    //     let currentID = request.id;
+    //     let user = request.userName;
+    //     if (currentID == body.id && (user == body.user || body.user == request.name)) {
+    //         friendRequests.splice(i, 1);
+    //         break;
+    //     }
+    // }
+    DB.deleteRequest(body.email)
 }
 
 // GetFriendRequests
@@ -229,7 +230,8 @@ apiRouter.get('/request', verifyAuth, (req, res) => {
 
 // SubmitFriendRequest
 apiRouter.post('/request', verifyAuth, (req, res) => {
-    friendRequests.push(req.body);
+    // friendRequests.push(req.body);
+    DB.addRequest(req.body)
 });
 
 // DeleteFriendRequest
