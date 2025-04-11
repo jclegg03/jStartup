@@ -123,41 +123,52 @@ apiRouter.delete('/goal', verifyAuth, (req, res) => {
 
 //does the actual deleting of a friend
 function deleteFriend(body) {
-    for (let i = 0; i < friends.length; i++) {
-        let friend = friends[i];
-        let currentID = friend.id;
-        let user = friend.name;
-        if (currentID == body.id && (user == body.user || body.user == friend.userName)) {
-            friends.splice(i, 1);
-            break;
-        }
-    }
+    // for (let i = 0; i < friends.length; i++) {
+    //     let friend = friends[i];
+    //     let currentID = friend.id;
+    //     let user = friend.name;
+    //     if (currentID == body.id && (user == body.user || body.user == friend.userName)) {
+    //         friends.splice(i, 1);
+    //         break;
+    //     }
+    // }
+    DB.deleteFriend(body)
 }
 
 //makes sure the response only contains friends for that person.
 function validFriends(user) {
-    let friendList = [];
+    // let friendList = [];
 
-    for (let i = 0; i < friends.length; i++) {
-        let friend = friends[i];
-        if (user.email == friend.name || user.email == friend.userName) {
-            friendList.push(friend);
-        }
-    }
-    return friendList;
+    // for (let i = 0; i < friends.length; i++) {
+    //     let friend = friends[i];
+    //     if (user.email == friend.name || user.email == friend.userName) {
+    //         friendList.push(friend);
+    //     }
+    // }
+    return DB.getFriends(user.email)
 }
 
 function getFriendGoals(user, friendName) {
     const email = user.email;
-    let goalList = [];
+    // let goalList = [];
 
-    for (let i = 0; i < goals.length; i++) {
-        let goal = goals[i];
-        if (friendName == goal.name) {
-            goalList.push(goal);
-        }
+    // for (let i = 0; i < goals.length; i++) {
+    //     let goal = goals[i];
+    //     if (friendName == goal.name) {
+    //         goalList.push(goal);
+    //     }
+    // }
+    let friends = validFriends(user)
+    let isFriends = false
+    for(let i = 0; i < friends.length; i++) {
+        if((friends[i].name == email && friends[i].userName == friendName) ||
+            (friends[i].name == friendName && friends[i].userName == email)) {
+                isFriends = true
+                break
+            }
     }
-    return goalList;
+
+    if(isFriends) return DB.getGoals(friendName);
 }
 
 // GetFriendsGoals

@@ -49,12 +49,16 @@ async function deleteRequest(request) {
     await requestCollection.deleteOne({ $or: [{name: request.name}, {userName: request.name}]})
 }
 
+function getFriends(user) {
+    return friendCollection.find({ $or: [{name: user}, {userName: user}]}).toArray()
+}
+
 async function addFriend(friend) {
     await friendCollection.insertOne(friend)
 }
 
 async function deleteFriend(friend) {
-    await friendCollection.deleteOne({ $or: [{name: friend.name}, {userName: friend.name}]})
+    await friendCollection.deleteOne({ $or: [{name: friend.user}, {userName: friend.user}], id: friend.id})
 }
 
 module.exports = {
@@ -68,6 +72,7 @@ module.exports = {
     deleteGoal,
     addRequest,
     deleteRequest,
+    getFriends,
     addFriend,
     deleteFriend
 }
