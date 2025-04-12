@@ -34,10 +34,6 @@ async function addGoal(goal) {
     await goalCollection.insertOne(goal)
 }
 
-async function updateGoal(goal) {
-    await goalCollection.updateOne({ name: goal.name, id: goal.id }, { $set: goal })
-}
-
 async function deleteGoal(goal) {
     await goalCollection.deleteOne({ name: goal.user, id: goal.id })
 }
@@ -73,7 +69,6 @@ module.exports = {
     addUser,
     updateUser,
     addGoal,
-    updateGoal,
     deleteGoal,
     getRequests,
     addRequest,

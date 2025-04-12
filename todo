@@ -9,6 +9,9 @@ FIX:
 - change friend object structure to say user1, user2 for better readability.
 - set limit on number of goals
 
+EFFICIENCY:
+- fix how goals are updated in time.js (it kinda slow)
+
 FORMAT:
 - super long goals cause the remove friend button to go to the right of the friend box.
 - delete button on the goal screen can also be placed to high due to this.

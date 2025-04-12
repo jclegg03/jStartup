@@ -83,8 +83,8 @@ async function validGoals(user) {
 }
 
 //does the actual deleting of a goal
-function deleteGoal(body) {
-    DB.deleteGoal(body)
+async function deleteGoal(body) {
+    await DB.deleteGoal(body)
 }
 
 // GetGoals
@@ -94,15 +94,15 @@ apiRouter.get('/goals', verifyAuth, (req, res) => {
 });
 
 // SubmitGoal
-apiRouter.post('/goal', verifyAuth, (req, res) => {
-    DB.addGoal(req.body)
+apiRouter.post('/goal', verifyAuth, async (req, res) => {
+    await DB.addGoal(req.body)
     validGoals(req.user)
         .then((goals) => res.send(goals))
 });
 
 // DeleteGoal
-apiRouter.delete('/goal', verifyAuth, (req, res) => {
-    deleteGoal(req.body);
+apiRouter.delete('/goal', verifyAuth, async (req, res) => {
+    await deleteGoal(req.body);
     validGoals(req.user)
         .then(goals => res.send(goals))
 });
