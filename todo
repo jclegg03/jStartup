@@ -1,3 +1,7 @@
+IMPORTANT:
+- force reload upon clicking add/remove friend request and remove friend
+- fix goal duplicating upon updating streak
+
 FIX:
 - Some quotes may still show up with the &#8230; form.
 - confirm a friend request is being sent only to real users.
