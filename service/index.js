@@ -174,9 +174,9 @@ apiRouter.get('/friends', verifyAuth, (req, res) => {
 });
 
 // SubmitFriend
-apiRouter.post('/friend', verifyAuth, (req, res) => {
+apiRouter.post('/friend', verifyAuth, async (req, res) => {
     // friends.push(req.body);
-    DB.addFriend(req.body)
+    await DB.addFriend(req.body)
     validFriends(req.user)
         .then(friends => res.send(friends))
 });
