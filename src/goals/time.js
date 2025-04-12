@@ -79,11 +79,9 @@ export function updateTimeLeft(goal, update) {
 function resetStreak(goal) {
     let id = goal.id
     let goalList = []
-    let updatedGoal = null
-    const goalsText = localStorage.getItem('goals')
-    if (goalsText) {
-        goalList = JSON.parse(goalsText)
-    }
+    await fetch('/api/goals', {
+        method: 'GET'
+    }).then((res) => res.json()).then((list) => {goalList = list})
 
     for (let i = 0; i < goalList.length; i++) {
         const currentGoal = goalList[i]
@@ -99,11 +97,20 @@ function resetStreak(goal) {
             }
             date = new Date(date)
             const newGoal = {
-                name: goal.userName, goalText: goal.goalText, goalType: goal.goalType,
+                name: goal.name, goalText: goal.goalText, goalType: goal.goalType,
                 streak: 0, date: date, id: currentID
             }
             goalList[i] = newGoal
-            localStorage.setItem('goals', JSON.stringify(goalList))
+            await fetch('/api/goal', {
+                method: 'DELETE',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ user: currentGoal.name, id: id})
+            })
+            await fetch('/api/goal', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(newGoal),
+            })
             return newGoal
         }
     }
