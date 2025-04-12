@@ -199,11 +199,12 @@ async function getRequests(user) {
     //         requests.push(request);
     //     }
     // }
-    return await DB.getRequests(email);
+    let requests = await DB.getRequests(email);
+    return requests
 }
 
 //does the actual deleting of a friend request
-function deleteRequest(body) {
+async function deleteRequest(body) {
     // for (let i = 0; i < friendRequests.length; i++) {
     //     let request = friendRequests[i];
     //     let currentID = request.id;
@@ -213,7 +214,7 @@ function deleteRequest(body) {
     //         break;
     //     }
     // }
-    DB.deleteRequest(body)
+    await DB.deleteRequest(body)
 }
 
 // GetFriendRequests
@@ -229,11 +230,11 @@ apiRouter.post('/request', verifyAuth, (req, res) => {
 });
 
 // DeleteFriendRequest
-apiRouter.delete('/request', verifyAuth, (req, res) => {
-    deleteRequest(req.body);
+apiRouter.delete('/request', verifyAuth, async (req, res) => {
+    await deleteRequest(req.body)
     getRequests(req.user)
         .then(requests => res.send(requests))
-});
+    });
 
 // Default error handler
 app.use(function (err, req, res, next) {
