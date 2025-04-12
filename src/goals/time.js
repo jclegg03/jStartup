@@ -1,4 +1,4 @@
-export function updateTimeLeft(goal, update) {
+export async function updateTimeLeft(goal, update) {
     // console.log(goal)
     const curTime = new Date()
     const oldTime = new Date(goal.date)
@@ -66,9 +66,7 @@ export function updateTimeLeft(goal, update) {
             }
         }
         else {
-            resetStreak(goal)
-                .then((newGoal) => updateTimeLeft(newGoal, update))
-            streak = 0
+            resetStreak(goal, update)
             return
         }
     }
@@ -76,7 +74,7 @@ export function updateTimeLeft(goal, update) {
     update(timeLeft, disabled, streak)
 }
 
-async function resetStreak(goal) {
+async function resetStreak(goal, update) {
     let id = goal.id
     let goalList = []
     await fetch('/api/goals', {
@@ -102,16 +100,12 @@ async function resetStreak(goal) {
             }
             goalList[i] = newGoal
             await fetch('/api/goal', {
-                method: 'DELETE',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ user: currentGoal.name, id: id})
-            })
-            await fetch('/api/goal', {
-                method: 'POST',
+                method: 'PUT',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(newGoal),
             })
-            return newGoal
+            updateTimeLeft(newGoal, update)
+            break
         }
     }
 }

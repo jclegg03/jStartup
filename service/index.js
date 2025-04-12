@@ -93,6 +93,13 @@ apiRouter.get('/goals', verifyAuth, (req, res) => {
         .then(goals => res.send(goals))
 });
 
+// UpdateGoal
+apiRouter.put('/goal', verifyAuth, async(req, res) => {
+    await DB.updateGoal(req.body)
+    validGoals(req.user)
+        .then((goals) => res.send(goals))
+})
+
 // SubmitGoal
 apiRouter.post('/goal', verifyAuth, async (req, res) => {
     await DB.addGoal(req.body)
