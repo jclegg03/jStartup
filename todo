@@ -1,6 +1,5 @@
 IMPORTANT:
-- force reload upon clicking add friend request and remove friend
-- fix goal duplicating upon updating streak
+- fix goal duplicating upon updating streak? happended once but havent seen it again yet
 
 FIX:
 - Some quotes may still show up with the &#8230; form.

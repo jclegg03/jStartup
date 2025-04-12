@@ -108,7 +108,7 @@ apiRouter.delete('/goal', verifyAuth, (req, res) => {
 });
 
 //does the actual deleting of a friend
-function deleteFriend(body) {
+async function deleteFriend(body) {
     // for (let i = 0; i < friends.length; i++) {
     //     let friend = friends[i];
     //     let currentID = friend.id;
@@ -118,7 +118,7 @@ function deleteFriend(body) {
     //         break;
     //     }
     // }
-    DB.deleteFriend(body)
+    await DB.deleteFriend(body)
 }
 
 //makes sure the response only contains friends for that person.
@@ -182,8 +182,8 @@ apiRouter.post('/friend', verifyAuth, async (req, res) => {
 });
 
 // DeleteFriend
-apiRouter.delete('/friend', verifyAuth, (req, res) => {
-    deleteFriend(req.body);
+apiRouter.delete('/friend', verifyAuth, async (req, res) => {
+    await deleteFriend(req.body);
     validFriends(req.user)
         .then(friends => res.send(friends))
 });
