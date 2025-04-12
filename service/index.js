@@ -146,15 +146,15 @@ function getFriendGoals(user, friendName) {
     // }
     let friends = validFriends(user)
     let isFriends = false
-    for(let i = 0; i < friends.length; i++) {
-        if((friends[i].name == email && friends[i].userName == friendName) ||
+    for (let i = 0; i < friends.length; i++) {
+        if ((friends[i].name == email && friends[i].userName == friendName) ||
             (friends[i].name == friendName && friends[i].userName == email)) {
-                isFriends = true
-                break
-            }
+            isFriends = true
+            break
+        }
     }
 
-    if(isFriends) return DB.getGoals(friendName);
+    if (isFriends) return DB.getGoals(friendName);
     else return []
 }
 
@@ -165,24 +165,27 @@ apiRouter.get('/friend/goals', verifyAuth, (req, res) => {
 
 // GetFriends
 apiRouter.get('/friends', verifyAuth, (req, res) => {
-    res.send(validFriends(req.user));
+    validFriends(req.user)
+        .then(friends => res.send(friends))
 });
 
 // SubmitFriend
 apiRouter.post('/friend', verifyAuth, (req, res) => {
     // friends.push(req.body);
     DB.addFriend(req.body)
-    res.send(validFriends(req.user));
+    validFriends(req.user)
+        .then(friends => res.send(friends))
 });
 
 // DeleteFriend
 apiRouter.delete('/friend', verifyAuth, (req, res) => {
     deleteFriend(req.body);
-    res.send(validFriends(req.user));
+    validFriends(req.user)
+        .then(friends => res.send(friends))
 });
 
 // Gets the list of requests for that user
-function getRequests(user) {
+async function getRequests(user) {
     const email = user.email;
     // let requests = [];
 
@@ -192,7 +195,7 @@ function getRequests(user) {
     //         requests.push(request);
     //     }
     // }
-    return DB.getRequests(email);
+    return await DB.getRequests(email);
 }
 
 //does the actual deleting of a friend request
@@ -206,12 +209,13 @@ function deleteRequest(body) {
     //         break;
     //     }
     // }
-    DB.deleteRequest(body.email)
+    DB.deleteRequest(body)
 }
 
 // GetFriendRequests
 apiRouter.get('/request', verifyAuth, (req, res) => {
-    res.send(getRequests(req.user));
+    getRequests(req.user)
+        .then(requests => res.send(requests))
 });
 
 // SubmitFriendRequest
@@ -223,7 +227,8 @@ apiRouter.post('/request', verifyAuth, (req, res) => {
 // DeleteFriendRequest
 apiRouter.delete('/request', verifyAuth, (req, res) => {
     deleteRequest(req.body);
-    res.send(getRequests(req.user));
+    getRequests(req.user)
+        .then(requests => res.send(requests))
 });
 
 // Default error handler

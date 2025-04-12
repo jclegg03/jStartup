@@ -51,7 +51,7 @@ async function addRequest(request) {
 }
 
 async function deleteRequest(request) {
-    await requestCollection.deleteOne({ $or: [{name: request.name}, {userName: request.name}]})
+    await requestCollection.deleteOne({ $or: [{name: request.user}, {userName: request.user}], id: request.id})
 }
 
 function getFriends(user) {
