@@ -66,9 +66,9 @@ export function updateTimeLeft(goal, update) {
             }
         }
         else {
-            const newGoal = resetStreak(goal)
+            resetStreak(goal)
+                .then((newGoal) => updateTimeLeft(newGoal, update))
             streak = 0
-            updateTimeLeft(newGoal, update)
             return
         }
     }
@@ -76,7 +76,7 @@ export function updateTimeLeft(goal, update) {
     update(timeLeft, disabled, streak)
 }
 
-function resetStreak(goal) {
+async function resetStreak(goal) {
     let id = goal.id
     let goalList = []
     await fetch('/api/goals', {
