@@ -6,7 +6,7 @@ FIX:
 - Some quotes may still show up with the &#8230; form.
 - confirm a friend request is being sent only to real users.
 - make sure you aren't adding yourself as friend.
-- make sure friend request isn't a duplicate of existing friend request.
+- make sure friend request isn't a duplicate of existing friend request/friend.
 - change friend object structure to say user1, user2 for better readability.
 - set limit on number of goals
 
