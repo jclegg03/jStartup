@@ -134,7 +134,7 @@ function validFriends(user) {
     return DB.getFriends(user.email)
 }
 
-function getFriendGoals(user, friendName) {
+async function getFriendGoals(user, friendName) {
     const email = user.email;
     // let goalList = [];
 
@@ -144,7 +144,7 @@ function getFriendGoals(user, friendName) {
     //         goalList.push(goal);
     //     }
     // }
-    let friends = validFriends(user)
+    let friends = await validFriends(user)
     let isFriends = false
     for (let i = 0; i < friends.length; i++) {
         if ((friends[i].name == email && friends[i].userName == friendName) ||
@@ -154,13 +154,17 @@ function getFriendGoals(user, friendName) {
         }
     }
 
-    if (isFriends) return DB.getGoals(friendName);
+    if (isFriends) {
+        let goals = await DB.getGoals(friendName);
+        return goals
+    }
     else return []
 }
 
 // GetFriendsGoals
 apiRouter.get('/friend/goals', verifyAuth, (req, res) => {
-    res.send(getFriendGoals(req.user, req.query.friend));
+    getFriendGoals(req.user, req.query.friend)
+        .then(goals => res.send(goals))
 });
 
 // GetFriends
