@@ -1,5 +1,5 @@
 IMPORTANT:
-- fix goal duplicating upon updating streak? happended once but havent seen it again yet
+- fix goal duplicating upon updating streak? happended once but havent seen it again yet. May be result of the quick refresh when testing
 
 FIX:
 - Some quotes may still show up with the &#8230; form.
