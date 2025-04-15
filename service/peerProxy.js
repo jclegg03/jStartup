@@ -4,7 +4,7 @@ const { WebSocketServer } = require('ws')
 //All critical data is saved using the DB
 const users = new Map()
 
-export function peerProxy(server) {
+function peerProxy(server) {
     const socketServer = new WebSocketServer({ server: server })
 
     socketServer.on('connection', (socket) => {
@@ -30,3 +30,5 @@ export function peerProxy(server) {
         })
     })
 }
+
+module.exports = {peerProxy}
