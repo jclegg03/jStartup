@@ -7,10 +7,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-// let goals = [];
-// let friendRequests = [];
-// let friends = [];
-
 // The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -116,41 +112,16 @@ apiRouter.delete('/goal', verifyAuth, async (req, res) => {
 
 //does the actual deleting of a friend
 async function deleteFriend(body) {
-    // for (let i = 0; i < friends.length; i++) {
-    //     let friend = friends[i];
-    //     let currentID = friend.id;
-    //     let user = friend.name;
-    //     if (currentID == body.id && (user == body.user || body.user == friend.userName)) {
-    //         friends.splice(i, 1);
-    //         break;
-    //     }
-    // }
     await DB.deleteFriend(body)
 }
 
 //makes sure the response only contains friends for that person.
 function validFriends(user) {
-    // let friendList = [];
-
-    // for (let i = 0; i < friends.length; i++) {
-    //     let friend = friends[i];
-    //     if (user.email == friend.name || user.email == friend.userName) {
-    //         friendList.push(friend);
-    //     }
-    // }
     return DB.getFriends(user.email)
 }
 
 async function getFriendGoals(user, friendName) {
     const email = user.email;
-    // let goalList = [];
-
-    // for (let i = 0; i < goals.length; i++) {
-    //     let goal = goals[i];
-    //     if (friendName == goal.name) {
-    //         goalList.push(goal);
-    //     }
-    // }
     let friends = await validFriends(user)
     let isFriends = false
     for (let i = 0; i < friends.length; i++) {
@@ -182,7 +153,6 @@ apiRouter.get('/friends', verifyAuth, (req, res) => {
 
 // SubmitFriend
 apiRouter.post('/friend', verifyAuth, async (req, res) => {
-    // friends.push(req.body);
     await DB.addFriend(req.body)
     validFriends(req.user)
         .then(friends => res.send(friends))
@@ -198,29 +168,12 @@ apiRouter.delete('/friend', verifyAuth, async (req, res) => {
 // Gets the list of requests for that user
 async function getRequests(user) {
     const email = user.email;
-    // let requests = [];
-
-    // for (let i = 0; i < friendRequests.length; i++) {
-    //     let request = friendRequests[i];
-    //     if (email == request.name) {
-    //         requests.push(request);
-    //     }
-    // }
     let requests = await DB.getRequests(email);
     return requests
 }
 
 //does the actual deleting of a friend request
 async function deleteRequest(body) {
-    // for (let i = 0; i < friendRequests.length; i++) {
-    //     let request = friendRequests[i];
-    //     let currentID = request.id;
-    //     let user = request.userName;
-    //     if (currentID == body.id && (user == body.user || body.user == request.name)) {
-    //         friendRequests.splice(i, 1);
-    //         break;
-    //     }
-    // }
     await DB.deleteRequest(body)
 }
 
