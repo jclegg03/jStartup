@@ -41,13 +41,19 @@ export function Friends(props) {
     //used by the search friend section
     async function makeRequest() {
         const request = { name: friendName, id: makeId(), userName: props.userName }
-        await fetch('/api/request', {
+        fetch('/api/request', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(request),
         })
 
-        //do something to make other client update request list.
+        const message = {
+            method: 'send',
+            user: props.userName,
+            to: friendName,
+            type: socket.Events.NewFriendRequest
+        }
+        socket.send(message)
     }
 
     async function deleteFriend(id, user) {
