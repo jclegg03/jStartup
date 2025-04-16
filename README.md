@@ -111,11 +111,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - I did not complete this part of the deliverable.
-- [ ] **User login and logout** - I did not complete this part of the deliverable.
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Restricts functionality based on authentication** - I did not complete this part of the deliverable.
+- [x] **User registration** - User data stored in the DB
+- [x] **User login and logout** - Login and out using credentials stored in DB.
+- [x] **Stores data in MongoDB** - Goals, friends, and requests are now stored in the DB.
+- [x] **Stores credentials in MongoDB** - Stores the users in the DB.
+- [x] **Restricts functionality based on authentication** - I always call the DB stuff after calling the check auth so unless there is a sneaky way to call DB function without using my backend endpoints, yes.
 
 ## 🚀 WebSocket deliverable
 
