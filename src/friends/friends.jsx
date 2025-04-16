@@ -82,6 +82,7 @@ export function Friends(props) {
                     id={friend.id}
                     delete={(id, user) => deleteFriend(id, user)}
                     key={friend.id}
+                    socket={socket}
                 />
             )
         }

@@ -4,6 +4,15 @@ import { FriendGoal } from "./friendGoal";
 export function Friend(props) {
     const [goals, setGoals] = React.useState([])
     const [numGoals, setNumGoals] = React.useState("")
+    let socket = props.socket
+    socket.setUpdateGoals(() => {
+        fetch('/api/friend/goals?friend=' + props.name, {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((goalList) => updateGoals(goalList))
+    })
+    
     React.useEffect(() => {
         fetch('/api/friend/goals?friend=' + props.name, {
             method: 'GET'
