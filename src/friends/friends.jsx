@@ -4,12 +4,21 @@ import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
 import { FriendRequests } from './friendRequests'
+import { Events, FrontEndSocket } from './frontEndWebSocket.js'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
     const [quote, setQuote] = React.useState("")
     const [source, setSource] = React.useState("")
+    let socket = new FrontEndSocket(props.userName)
+    socket.setUpdateFriends(() => {
+        fetch('/api/friends', {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((list) => updateFriends(list))
+    })
 
     React.useEffect(() => {
         fetch('/api/friends', {
@@ -37,6 +46,8 @@ export function Friends(props) {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(request),
         })
+
+        //do something to make other client update request list.
     }
 
     async function deleteFriend(id) {
@@ -47,6 +58,8 @@ export function Friends(props) {
         })
             .then((res) => res.json())
             .then((list) => updateFriends(list))
+
+        //do something to make other client update friend list
     }
 
     function updateFriends(friendList) {
@@ -86,6 +99,7 @@ export function Friends(props) {
                 <FriendRequests
                     updateFriends={(list) => updateFriends(list)}
                     userName={props.userName}
+                    socket={socket}
                 />
             </div>
             {/* <Notifications

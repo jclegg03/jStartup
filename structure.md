@@ -24,3 +24,11 @@ FRIEND:
     id: works the same as goal IDs,
     userName: idk which is which it works
 }
+
+MESSAGE:
+{
+    method: 'register' or 'send',
+    user: the user sending the message,
+    to: the user to send the message to,
+    type: 'updateFriends' or 'newFriendRequest'
+}

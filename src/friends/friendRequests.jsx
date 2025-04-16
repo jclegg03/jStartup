@@ -4,13 +4,21 @@ import { makeId } from '../goals/id'
 
 export function FriendRequests(props) {
     const [friendRequests, setFriendRequests] = React.useState([])
+    props.socket.setUpdateRequests(() => {
+        fetch('/api/request', {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((list) => updateRequests(list))
+    })
+
     React.useEffect(() => {
         try {
             fetch('/api/request', {
                 method: 'GET'
             })
                 .then((res) => res.json())
-            .then((list) => updateRequests(list))
+                .then((list) => updateRequests(list))
         }
         catch (error) {
 
@@ -27,6 +35,10 @@ export function FriendRequests(props) {
         })
         const friends = await res.json()
         props.updateFriends(friends)
+
+        //do something to make other client update friend list
+
+
         deleteFriendRequest(id)
     }
 
