@@ -13,7 +13,7 @@ function peerProxy(server) {
 
             //add user to registry of current users
             if (data.method == 'register') {
-                users.set(data.user, socketServer)
+                users.set(data.user, socket)
                 socket.user = data.user
             }
 
