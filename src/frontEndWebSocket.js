@@ -21,8 +21,7 @@ class FrontEndSocket {
         }
 
         this.socket.onmessage = async (message) => {
-            const data = JSON.parse(await message.data)
-            //do something
+            const data = JSON.parse(message.data)
             const type = data.type
             if (type === this.Events.UpdateFriends) {
                 this.updateFriends(data.message)
@@ -30,7 +29,7 @@ class FrontEndSocket {
             else if (type === this.Events.NewFriendRequest) {
                 this.updateRequests(data.message)
             }
-            else if(type === this.Events.UpdateFriendGoals) {
+            else if (type === this.Events.UpdateFriendGoals) {
                 this.updateGoals(data.message)
             }
         }

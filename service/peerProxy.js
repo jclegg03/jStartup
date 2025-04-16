@@ -20,7 +20,7 @@ function peerProxy(server) {
             if(data.method == 'send') {
                 const otherSocket = users.get(data.to)
                 if(otherSocket && otherSocket.readyState === WebSocket.OPEN) {
-                    otherSocket.send(message)
+                    otherSocket.send(JSON.stringify(data))
                 }
             }
         })
