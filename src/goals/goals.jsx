@@ -7,17 +7,16 @@ export function Goals(props) {
     const userName = props.userName
     const [goalText, setGoalText] = React.useState('')
     const [goalType, setGoalType] = React.useState('Daily')
+    let socket = props.socket
 
     React.useEffect(() => {
-        try {
-            fetch('/api/goals', {
-                method: 'GET'
-            })
-                .then((res) => res.json())
-                .then((goalList) => updateGoals(goalList))
-        }
-        catch (error) {
-
+        fetch('/api/goals', {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((goalList) => updateGoals(goalList))
+        if(!socket.active) {
+            socket.setUserName(userName)
         }
     }, [])
 
@@ -40,6 +39,8 @@ export function Goals(props) {
         })
             .then((res) => res.json())
             .then((goals) => updateGoals(goals))
+
+        notifyFriends(' just set a new goal!')
     }
 
     async function deleteGoal(id) {
@@ -50,6 +51,30 @@ export function Goals(props) {
         })
             .then((res) => res.json())
             .then((goalList) => updateGoals(goalList))
+        
+        notifyFriends(' just deleted a goal.')
+    }
+
+    function notifyFriends(msg)
+    {
+        fetch('/api/friends', {
+            method: 'GET'
+        })
+            .then((res) => res.json())
+            .then((list) => {
+                for (let i = 0; i < list.length; i++) {
+                    const friend = list[i]
+                    const name = (friend.name === userName) ? friend.userName : friend.name
+                    const message = {
+                        method: 'send',
+                        user: props.userName,
+                        to: name,
+                        type: socket.Events.UpdateFriendGoals,
+                        message: props.userName + msg
+                    }
+                    socket.send(message)
+                }
+            })
     }
 
     function updateGoals(goalList) {

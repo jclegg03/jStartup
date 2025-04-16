@@ -6,9 +6,11 @@ class FrontEndSocket {
             NewFriendRequest: 'newFriendRequest',
             UpdateFriendGoals: 'updateFriendGoals'
         }
+        this.active = false
     }
 
     setUserName(userName) {
+        this.active = true
         const user = userName
 
         let port = window.location.port

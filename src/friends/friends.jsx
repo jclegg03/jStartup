@@ -24,22 +24,24 @@ export function Friends(props) {
             .then((res) => res.json())
             .then((data) => {
                 setQuote(data.content.replace(/<[^>]*>/g, "")
-                .replace(/&#821[67];/g, "'").replace(/&#822[01];/g, '"').replace(/&#8211;/g, "–")
-                .replace(/&#8230;/g, "…")
-            )
+                    .replace(/&#821[67];/g, "'").replace(/&#822[01];/g, '"').replace(/&#8211;/g, "–")
+                    .replace(/&#8230;/g, "…")
+                )
                 setSource(data.title)
             })
-        
+
+        if (!socket.active) {
             socket.setUserName(props.userName)
-            socket.setUpdateFriends((message) => {
-                fetch('/api/friends', {
-                    method: 'GET'
-                })
-                    .then((res) => res.json())
-                    .then((list) => updateFriends(list))
-                
-                notificationsRef.current?.addNotification(message)
+        }
+        socket.setUpdateFriends((message) => {
+            fetch('/api/friends', {
+                method: 'GET'
             })
+                .then((res) => res.json())
+                .then((list) => updateFriends(list))
+
+            notificationsRef.current?.addNotification(message)
+        })
     }, [])
 
     //used by the search friend section
@@ -69,15 +71,15 @@ export function Friends(props) {
             type: socket.Events.UpdateFriends,
             message: props.userName + ' is no longer your friend.'
         }
-        
+
         fetch('/api/friend', {
             method: 'DELETE',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ user: props.userName, id: id})
+            body: JSON.stringify({ user: props.userName, id: id })
         })
             .then((res) => res.json())
             .then((list) => updateFriends(list))
-        
+
         socket.send(message)
     }
 
@@ -95,10 +97,11 @@ export function Friends(props) {
                     delete={(id, user) => deleteFriend(id, user)}
                     key={friend.id}
                     socket={socket}
+                    notificationsRef={notificationsRef}
                 />
             )
         }
-        if(friendElements.length > 0) setFriends(friendElements)
+        if (friendElements.length > 0) setFriends(friendElements)
         else setFriends("Send/Accept friend requests to see your friends goals!")
     }
 

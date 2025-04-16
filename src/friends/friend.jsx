@@ -5,20 +5,23 @@ export function Friend(props) {
     const [goals, setGoals] = React.useState([])
     const [numGoals, setNumGoals] = React.useState("")
     let socket = props.socket
-    socket.setUpdateGoals(() => {
-        fetch('/api/friend/goals?friend=' + props.name, {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((goalList) => updateGoals(goalList))
-    })
-    
+
     React.useEffect(() => {
         fetch('/api/friend/goals?friend=' + props.name, {
             method: 'GET'
         })
             .then((res) => res.json())
             .then((goalList) => updateGoals(goalList))
+
+        socket.setUpdateGoals((message) => {
+            fetch('/api/friend/goals?friend=' + props.name, {
+                method: 'GET'
+            })
+                .then((res) => res.json())
+                .then((goalList) => updateGoals(goalList))
+            
+            props.notificationsRef.current?.addNotification(message)
+        })
     }, [])
 
     function updateGoals(goalList) {
@@ -43,7 +46,7 @@ export function Friend(props) {
         }
 
         setGoals(goalElements)
-        if(goalElements.length == 1) setNumGoals("(1 goal)")
+        if (goalElements.length == 1) setNumGoals("(1 goal)")
         else setNumGoals("(" + goalElements.length + " goals)")
     }
 

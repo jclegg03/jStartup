@@ -125,4 +125,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Frontend makes WebSocket connection** - Indeed it connects to the backend.
 - [x] **Data sent over WebSocket connection** - When something should be updated for another user, the websocket tells the user's websocket to have the page render the new information.
 - [x] **WebSocket data displayed** - The websocket tells the page to render new information and also render a message sent from the other user's app.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Application is fully functional** - Everything should now work as intended.
