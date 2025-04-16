@@ -6,6 +6,7 @@ import { Login } from './login/login';
 import { Goals } from './goals/goals';
 import { Friends } from './friends/friends';
 import { Achievements } from './achievements/achievements';
+import { socket } from './frontEndWebSocket'
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem('userName') || "Unidentified")
@@ -65,6 +66,7 @@ export default function App() {
                             setGoals={(goals) => setGoals(goals)}
                             state={state}
                             setState={(state) => setState(state)}
+                            socket={socket}
                         />}
                 />
                 <Route path='/friends' element=
@@ -72,6 +74,7 @@ export default function App() {
                         notifications={notifications}
                         setNotifications={(notifications) => setNotifications(notifications)}
                         userName={userName}
+                        socket={socket}
                     />} />
                 {/* <Route path='/achievements' element={<Achievements />} /> */}
                 <Route path='*' element={<NotFound />} />

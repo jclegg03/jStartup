@@ -3,7 +3,8 @@ class FrontEndSocket {
         this.Events =
         {
             UpdateFriends: 'updateFriends',
-            NewFriendRequest: 'newFriendRequest'
+            NewFriendRequest: 'newFriendRequest',
+            UpdateFriendGoals: 'updateFriendGoals'
         }
     }
 
@@ -29,6 +30,9 @@ class FrontEndSocket {
             else if (type === this.Events.NewFriendRequest) {
                 this.updateRequests()
             }
+            else if(type === this.Events.UpdateFriendGoals) {
+                this.updateGoals()
+            }
         }
     }
 
@@ -40,11 +44,13 @@ class FrontEndSocket {
         this.updateRequests = func
     }
 
+    setUpdateGoals(func) {
+        this.updateGoals = func
+    }
+
     send(data) {
         this.socket.send(JSON.stringify(data))
     }
-
-
 }
 
 

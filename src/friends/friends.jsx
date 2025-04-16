@@ -4,13 +4,13 @@ import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
 import { FriendRequests } from './friendRequests'
-import { socket } from './frontEndWebSocket'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
     const [friendName, setFriendName] = React.useState("")
     const [quote, setQuote] = React.useState("")
     const [source, setSource] = React.useState("")
+    let socket = props.socket
     socket.setUserName(props.userName)
     socket.setUpdateFriends(() => {
         fetch('/api/friends', {
