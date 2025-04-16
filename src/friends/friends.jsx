@@ -12,16 +12,6 @@ export function Friends(props) {
     const [source, setSource] = React.useState("")
     const notificationsRef = React.useRef()
     let socket = props.socket
-    socket.setUserName(props.userName)
-    socket.setUpdateFriends((message) => {
-        fetch('/api/friends', {
-            method: 'GET'
-        })
-            .then((res) => res.json())
-            .then((list) => updateFriends(list))
-        
-        notificationsRef.current?.addNotification(message)
-    })
 
     React.useEffect(() => {
         fetch('/api/friends', {
@@ -38,6 +28,17 @@ export function Friends(props) {
                 .replace(/&#8230;/g, "…")
             )
                 setSource(data.title)
+            })
+        
+            socket.setUserName(props.userName)
+            socket.setUpdateFriends((message) => {
+                fetch('/api/friends', {
+                    method: 'GET'
+                })
+                    .then((res) => res.json())
+                    .then((list) => updateFriends(list))
+                
+                notificationsRef.current?.addNotification(message)
             })
     }, [])
 

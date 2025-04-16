@@ -5,27 +5,23 @@ import { makeId } from '../goals/id'
 export function FriendRequests(props) {
     const [friendRequests, setFriendRequests] = React.useState([])
     let socket = props.socket
-    socket.setUpdateRequests((message) => {
+
+    React.useEffect(() => {
         fetch('/api/request', {
             method: 'GET'
         })
             .then((res) => res.json())
             .then((list) => updateRequests(list))
-        
-        props.notificationsRef.current?.addNotification(message)
-    })
 
-    React.useEffect(() => {
-        try {
+        socket.setUpdateRequests((message) => {
             fetch('/api/request', {
                 method: 'GET'
             })
                 .then((res) => res.json())
                 .then((list) => updateRequests(list))
-        }
-        catch (error) {
 
-        }
+            props.notificationsRef.current?.addNotification(message)
+        })
     }, [])
 
     //used by the friend requests
@@ -55,7 +51,7 @@ export function FriendRequests(props) {
         fetch('/api/request', {
             method: 'DELETE',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ user: props.userName, id: id})
+            body: JSON.stringify({ user: props.userName, id: id })
         })
             .then((res) => res.json())
             .then((list) => updateRequests(list))
@@ -76,7 +72,7 @@ export function FriendRequests(props) {
             )
         }
 
-        if(requestElements.length > 0) setFriendRequests(requestElements)
+        if (requestElements.length > 0) setFriendRequests(requestElements)
         else setFriendRequests("No friend requests … yet.")
     }
 

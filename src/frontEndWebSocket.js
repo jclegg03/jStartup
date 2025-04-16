@@ -20,7 +20,7 @@ class FrontEndSocket {
             this.socket.send(JSON.stringify(registration))
         }
 
-        this.socket.onmessage = async (message) => {
+        this.socket.onmessage = (message) => {
             const data = JSON.parse(message.data)
             const type = data.type
             if (type === this.Events.UpdateFriends) {
