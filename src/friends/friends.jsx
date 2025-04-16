@@ -10,14 +10,17 @@ export function Friends(props) {
     const [friendName, setFriendName] = React.useState("")
     const [quote, setQuote] = React.useState("")
     const [source, setSource] = React.useState("")
+    const notificationsRef = React.useRef()
     let socket = props.socket
     socket.setUserName(props.userName)
-    socket.setUpdateFriends(() => {
+    socket.setUpdateFriends((message) => {
         fetch('/api/friends', {
             method: 'GET'
         })
             .then((res) => res.json())
             .then((list) => updateFriends(list))
+        
+        notificationsRef.current?.addNotification(message)
     })
 
     React.useEffect(() => {
@@ -51,7 +54,8 @@ export function Friends(props) {
             method: 'send',
             user: props.userName,
             to: friendName,
-            type: socket.Events.NewFriendRequest
+            type: socket.Events.NewFriendRequest,
+            message: props.userName + ' wants to be your friend!'
         }
         socket.send(message)
     }
@@ -61,7 +65,8 @@ export function Friends(props) {
             method: 'send',
             user: props.userName,
             to: user,
-            type: socket.Events.UpdateFriends
+            type: socket.Events.UpdateFriends,
+            message: props.userName + ' is no longer your friend.'
         }
         
         fetch('/api/friend', {
@@ -114,12 +119,12 @@ export function Friends(props) {
                     updateFriends={(list) => updateFriends(list)}
                     userName={props.userName}
                     socket={socket}
+                    notificationsRef={notificationsRef}
                 />
             </div>
-            {/* <Notifications
-                notifications={props.notifications}
-                setNotifications={(notifications) => props.setNotifications(notifications)}
-            /> */}
+            <Notifications
+                ref={notificationsRef}
+            />
             <div className='section'>
                 <p>{quote}</p>
                 <p>- {source}</p>

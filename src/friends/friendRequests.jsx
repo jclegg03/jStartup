@@ -5,12 +5,14 @@ import { makeId } from '../goals/id'
 export function FriendRequests(props) {
     const [friendRequests, setFriendRequests] = React.useState([])
     let socket = props.socket
-    socket.setUpdateRequests(() => {
+    socket.setUpdateRequests((message) => {
         fetch('/api/request', {
             method: 'GET'
         })
             .then((res) => res.json())
             .then((list) => updateRequests(list))
+        
+        props.notificationsRef.current?.addNotification(message)
     })
 
     React.useEffect(() => {
@@ -41,7 +43,8 @@ export function FriendRequests(props) {
             method: 'send',
             user: props.userName,
             to: name,
-            type: socket.Events.UpdateFriends
+            type: socket.Events.UpdateFriends,
+            message: props.userName + " accepted your friend request!"
         }
         socket.send(message)
 

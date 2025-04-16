@@ -25,13 +25,13 @@ class FrontEndSocket {
             //do something
             const type = data.type
             if (type === this.Events.UpdateFriends) {
-                this.updateFriends()
+                this.updateFriends(data.message)
             }
             else if (type === this.Events.NewFriendRequest) {
-                this.updateRequests()
+                this.updateRequests(data.message)
             }
             else if(type === this.Events.UpdateFriendGoals) {
-                this.updateGoals()
+                this.updateGoals(data.message)
             }
         }
     }
