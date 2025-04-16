@@ -4,7 +4,7 @@ import { Notifications } from './notifications';
 import { makeId } from '../goals/id'
 import { Friend } from './friend'
 import { FriendRequests } from './friendRequests'
-import { Events, FrontEndSocket } from './frontEndWebSocket.js'
+import { FrontEndSocket } from './frontEndWebSocket'
 
 export function Friends(props) {
     const [friends, setFriends] = React.useState([])
@@ -50,7 +50,14 @@ export function Friends(props) {
         //do something to make other client update request list.
     }
 
-    async function deleteFriend(id) {
+    async function deleteFriend(id, user) {
+        const message = {
+            method: 'send',
+            user: props.userName,
+            to: user,
+            type: socket.Events.UpdateFriends
+        }
+        
         fetch('/api/friend', {
             method: 'DELETE',
             headers: { 'content-type': 'application/json' },
@@ -58,8 +65,8 @@ export function Friends(props) {
         })
             .then((res) => res.json())
             .then((list) => updateFriends(list))
-
-        //do something to make other client update friend list
+        
+        socket.send(message)
     }
 
     function updateFriends(friendList) {
@@ -73,7 +80,7 @@ export function Friends(props) {
                 <Friend
                     name={name}
                     id={friend.id}
-                    delete={(id) => deleteFriend(id)}
+                    delete={(id, user) => deleteFriend(id, user)}
                     key={friend.id}
                 />
             )

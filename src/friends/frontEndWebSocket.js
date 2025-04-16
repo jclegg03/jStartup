@@ -1,14 +1,14 @@
-const Events =
-{
-    UpdateFriends: 'updateFriends',
-    NewFriendRequest: 'newFriendRequest'
-}
-
 class FrontEndSocket {
     constructor(userName) {
+        this.Events =
+        {
+            UpdateFriends: 'updateFriends',
+            NewFriendRequest: 'newFriendRequest'
+        }
+
         const user = userName
         let port = window.location.port
-        const protocol = windoiw.location.protocol == 'http:' ? 'ws' : 'wss'
+        const protocol = window.location.protocol == 'http:' ? 'ws' : 'wss'
         this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`)
 
         this.socket.onopen = () => {
@@ -20,10 +20,10 @@ class FrontEndSocket {
             const data = JSON.parse(message.data)
             //do something
             type = data.type
-            if(type === Events.UpdateFriends) {
+            if (type === Events.UpdateFriends) {
                 this.updateFriends()
             }
-            else if(type === Events.NewFriendRequest) {
+            else if (type === Events.NewFriendRequest) {
                 this.updateRequests()
             }
         }
@@ -36,9 +36,14 @@ class FrontEndSocket {
     setUpdateRequests(func) {
         this.updateRequests = func
     }
+
+    send(data) {
+        this.socket.send(JSON.stringify(data))
+    }
+
+
 }
 
-module.exports = {
-    Events,
+export {
     FrontEndSocket
 }

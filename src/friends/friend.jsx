@@ -46,7 +46,7 @@ export function Friend(props) {
             {/* <span><button className="btn btn-primary">▼</button></span> */}
             {goals}
             <div className='remove-button'>
-                <button className="btn btn-secondary" onClick={() => props.delete(props.id)}>Remove Friend</button>
+                <button className="btn btn-secondary" onClick={() => props.delete(props.id, props.name)}>Remove Friend</button>
             </div>
         </div>
     )
